@@ -3,25 +3,34 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --primaryFont: hsl(34deg, 78%, 91%);
+  --primaryBg: hsl(240, 5.9%, 10%);
+  --accentOrange: hsl(15deg, 70%, 59%);
+  --accentGreen: hsl(141,78.9%,85.1%);
+  --accentBlue: hsl(217deg, 50%, 50%);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  scroll-snap-align: start;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 1px;
+  background-color: var(--primaryBg);
+}
+
+::-webkit-scrollbar-thumb {
+  width: 1px;
+  background-color: var(--accentOrange);
 }

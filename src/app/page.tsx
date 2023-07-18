@@ -1,113 +1,84 @@
 import Image from 'next/image'
+import Hello from '../resources/hello-sign.png'
+import Wifey from '../resources/wifey.jpg'
+import Sistine from '../resources/sistine.jpg'
+import Haircut from '../resources/haircut.jpg'
+import Justin from '../resources/justin.jpg'
+import Torii from '../resources/torii.jpg'
+import Sis from '../resources/sis.jpg'
+import Stonehenge from '../resources/stonehenge.jpg'
+import KidOne from '../resources/kid-one.jpg'
+import KidTwo from '../resources/kid-two.jpg'
+import Bday from '../resources/muhbday.jpeg'
+import Email from '../resources/email.svg'
+import Phone from '../resources/phone.svg'
+import LinkedIn from '../resources/linkedin.svg'
+import GitHub from '../resources/github.svg'
+
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
+    <main className='w-full max-w-cutoff flex flex-col items-center justify-center'>
+
+      {/* nav bar */}
+
+      <nav className='py-10 w-1/2 flex items-center justify-evenly gap-4 text-2xl '>
+        <a className='text-accentOrange' href="/">home</a>
+        <a href="/works">works</a>
+        <a href="/contact">contact</a>
+      </nav>
+
+      {/* intro text */}
+
+      <section className='my-10 flex flex-col items-center justify-center gap-4 text-center'>
+        <h1 className='flex items-center justify-center gap-2 tracking-wide text-3xl'><Image src={Hello} alt='Hello sign' width={75}/> I&apos;m Paul,</h1>
+        <p className='w-3/5 text-lg tracking-wide'>I&apos;m a growing frontend developer, a father & a husband, and I&apos;m in love with life. Let me save a few thousand words <sub className='text-accentGreen text-2xl'>&#10549;</sub></p>
+      </section>
+
+      {/* photo grid */}
+
+      <section className='w-4/5 grid items-center justify-center gap-3'>
+        <Image className='rounded-md col-start-1 col-span-3 row-start-1 row-span-2' src={Wifey} alt='my hot wife' />
+        <Image className='rounded-md h-full col-start-4 col-span-1 row-start-1 row-span-1' src={Sistine} alt='me at the Sistine Chapel' />
+        <Image className='rounded-md h-full col-start-4 col-span-1 row-start-2 row-span-1' src={Haircut} alt='me cutting my nephews hair' />
+        <Image className='rounded-md h-full col-start-1 col-span-1 row-start-3 row-span-1' src={Justin} alt='my cousin and I as kids' />
+        <Image className='rounded-md h-full col-start-1 col-span-1 row-start-4 row-span-1' src={Torii} alt='a torii gate' />
+        <Image className='rounded-md col-start-2 col-span-3 row-start-3 row-span-2' src={Sis} alt='my sis and I as kids' />
+        <Image className='rounded-md' src={Stonehenge} alt='me being unimpressed by Stonehenge' />
+        <Image className='rounded-md' src={KidOne} alt='a pic I drew of my son' />
+        <Image className='rounded-md' src={KidTwo} alt='a pic I drew of my daughter' />
+        <Image className='rounded-md' src={Bday} alt='me and my little man on my birthday' />
+      </section>
+
+      {/* more about me */}
+
+      <section className='w-3/4 my-10'>
+        <p className='p-4 text-lg text-center border-b-[1px] border-solid border-accentOrange'>
+          The vast majority of my time goes to one of these people above or to coding. I fell in love with codeign the first time I made a <a className='text-accentGreen font-light underline' href='https://github.com/Jpaulsisson/sudoku/tree/main'>Sudoku algorithm</a> with javascript. The sense of accomplishment and pride when it worked, was almost overwhelming. Solving problems has always been a passion. Even my first grade teacher still calls me Paul <em>&quot;I have a better idea&quot;</em> Sisson. What can I say? I just <b className='text-accentOrange '>love</b> figuring out how things work and finding ways to make them better.
         </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+        <p className='p-4 text-center'>
+          When the algorithms are put away, I&apos;m all about people. My family and friends, obviously, but also strangers. Nothing has ever enriched my life more than taking in the experiences of other people. Learning how they got to where they are today. Letting their stories be meaningful to me helps me connect with others in a way that gives me a deep love for them and their life, but it also teaches me how to be better than I was before.
+        </p>
+      </section>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      {/* mini contact section */}
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
+      <footer className='mb-10 w-1/2 flex justify-between'>
+      <a className='' href='mailto: paulsissonsemail@gmail.com'>
+        <Image src={Email} alt='envelope' width={30} />
+      </a>
+        <a className='' href='tel: 2055208659'>
+        <Image src={Phone} alt='phone' width={30} />
         </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
+        <a className='' href='https://www.linkedin.com/in/jpaulsisson/' rel='noopener noreferrer' target='_blank'>
+        <Image src={LinkedIn} alt='LinkedIn logo' width={30} />
         </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
+        <a href="https://github.com/Jpaulsisson">
+        <Image src={GitHub} alt='GitHub logo' width={30} />
         </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      </footer>
     </main>
-  )
+  );
 }
+
+// Icons by <a href='https://iconpacks.net/?utm_source=link-attribution&utm_content=142'>Iconpacks</a>
