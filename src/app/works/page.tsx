@@ -76,12 +76,12 @@ function Works() {
       {/* recent projects */}
 
       <h2 className='text-3xl mb-2'>recent</h2>
-      <section className='p-2 mt-4 mb-10 rounded-lg max-h-[30vh] w-3/5 overflow-x-hidden overflow-y-scroll flex flex-col justify-between items-center shadow-sm shadow-zinc-950  md:h-[40vh]'>
+      <section className='p-2 mt-4 mb-10 rounded-lg max-h-[30vh] w-3/5 overflow-x-hidden overflow-y-scroll flex flex-col justify-between items-center shadow-sm shadow-zinc-950  landscape:max-h-[70vh]'>
         {projects.map((project) => {
           return (
             <div key={project.name} className='flex flex-col items-center'>
               <h3 className='text-accentGreen text-xl text-center '>{project.name}</h3>
-              <Image src={project.img} alt={project.name} />
+              <Image className='rounded-xl' src={project.img} alt={project.name} />
               <div className='flex w-3/4 text-primaryFont justify-around mb-4 border-accentOrange border-solid border-b-2'>
                 <a href={project.href}>see it</a>
                 <a href={project.repo}>see code</a>

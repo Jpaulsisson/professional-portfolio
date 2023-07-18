@@ -37,17 +37,37 @@ export default function Home() {
 
       {/* photo grid */}
 
-      <section className='w-4/5 grid items-center justify-center gap-3'>
-        <Image className='rounded-md col-start-1 col-span-3 row-start-1 row-span-2' src={Wifey} alt='my hot wife' />
-        <Image className='rounded-md h-full col-start-4 col-span-1 row-start-1 row-span-1' src={Sistine} alt='me at the Sistine Chapel' />
-        <Image className='rounded-md h-full col-start-4 col-span-1 row-start-2 row-span-1' src={Haircut} alt='me cutting my nephews hair' />
-        <Image className='rounded-md h-full col-start-1 col-span-1 row-start-3 row-span-1' src={Justin} alt='my cousin and I as kids' />
-        <Image className='rounded-md h-full col-start-1 col-span-1 row-start-4 row-span-1' src={Torii} alt='a torii gate' />
-        <Image className='rounded-md col-start-2 col-span-3 row-start-3 row-span-2' src={Sis} alt='my sis and I as kids' />
-        <Image className='rounded-md' src={Stonehenge} alt='me being unimpressed by Stonehenge' />
-        <Image className='rounded-md' src={KidOne} alt='a pic I drew of my son' />
-        <Image className='rounded-md' src={KidTwo} alt='a pic I drew of my daughter' />
-        <Image className='rounded-md' src={Bday} alt='me and my little man on my birthday' />
+      <section className='w-4/5 mb-10 grid items-center justify-center gap-3'>
+        <div className="rounded-md col-start-1 col-span-3 row-start-1 row-span-2">
+          <Image className='rounded-xl' src={Wifey} alt='my hot wife' />
+        </div>
+        <div className='rounded-md col-start-4 col-span-1 row-start-1 row-span-1'>
+          <Image className='rounded-xl' src={Sistine} alt='me at the Sistine Chapel' />
+        </div>
+        <div className='rounded-md col-start-4 col-span-1 row-start-2 row-span-1'>
+          <Image className='rounded-xl' src={Haircut} alt='me cutting my nephews hair' />
+        </div>
+        <div className='rounded-md col-start-1 col-span-1 row-start-3 row-span-1'>
+          <Image className='rounded-xl' src={Justin} alt='my cousin and I as kids' />
+        </div>
+        <div className='rounded-md col-start-1 col-span-1 row-start-4 row-span-1'>
+          <Image className='rounded-xl' src={Torii} alt='a torii gate' />
+        </div>
+        <div className='rounded-md col-start-2 col-span-3 row-start-3 row-span-2'>
+          <Image className='rounded-xl' src={Sis} alt='my sis and I as kids' />
+        </div>
+        <div className='rounded-md col-start-1 col-span-1 row-start-5 row-span-1'>
+          <Image className='rounded-xl' src={Stonehenge} alt='me being unimpressed by Stonehenge' />
+        </div>
+        <div className='rounded-md col-start-2 col-span-1 row-start-5 row-span-1'>
+          <Image className='rounded-xl' src={KidOne} alt='a pic I drew of my son' />
+        </div>
+        <div className='rounded-md col-start-3 col-span-1 row-start-5 row-span-1'>
+          <Image className='rounded-xl' src={KidTwo} alt='a pic I drew of my daughter' />
+        </div>
+        <div className='rounded-md col-start-4 col-span-1 row-start-5 row-span-1'>
+          <Image className='rounded-xl' src={Bday} alt='me and my little man on my birthday' />
+        </div>
       </section>
 
       {/* more about me */}
