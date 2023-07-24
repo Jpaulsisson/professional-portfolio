@@ -1,50 +1,94 @@
-import Image from 'next/image'
+"use client"
+
+import './works.css';
+import Image, { StaticImageData } from 'next/image'
 import Email from '../../resources/email.svg'
 import Phone from '../../resources/phone.svg'
 import LinkedIn from '../../resources/linkedin.svg'
 import GitHub from '../../resources/github.svg'
-import CirclePainter  from '../../resources/circle-painter.jpeg'
-import Blackjack  from '../../resources/blackjack.jpeg'
+import CirclePainter  from '../../resources/circle-painter.png'
+import Blackjack  from '../../resources/blackjack.png'
 import AgeCalc  from '../../resources/age-calc.png'
 import Counter  from '../../resources/counter.png'
 import Retrofolio from '../../resources/retrofolio.png'
 import Smite from '../../resources/smite-meta.png'
 import Travel from '../../resources/travel.jpeg'
+import HTMLIcon from '../../resources/HTML-icon.svg'
+import CSSIcon from '../../resources/CSS-icon.svg'
+import JSIcon from '../../resources/JS-icon.svg'
+import ReactIcon from '../../resources/React-icon.svg'
+import SassIcon from '../../resources/Sass-icon.svg'
+import GitIcon from '../../resources/Git-icon.svg'
+import OpenBox from '../../resources/open-box.svg'
+import { useState } from 'react';
+
+type Project = {
+  name: string,
+  href: string,
+  img: StaticImageData,
+  tags: StaticImageData[],
+  repo: string,
+  status?: string
+}
 
 function Works() {
 
-  const projects = [
+  const [openRecent, setOpenRecent] = useState('h-0');
+  const [openCurrent, setOpenCurrent] = useState('h-0');
+
+  const projects:Project[] = [
     {
       name: 'Retrofolio',
       href: 'https://jpaulsisson.netlify.app/',
       img: Retrofolio,
+      tags: [HTMLIcon, SassIcon, JSIcon, ReactIcon, GitIcon],
       repo: 'https://github.com/Jpaulsisson/portfolio-site'
     },
     {
       name: 'Circle Painter',
       href: 'https://circle-paint.netlify.app/',
       img: CirclePainter,
+      tags: [HTMLIcon, CSSIcon, JSIcon, ReactIcon, GitIcon],
       repo: 'https://github.com/Jpaulsisson/circle-generator-app',
     },
     {
       name: 'Blackjack',
       href: 'https://jpaulsisson-blackjack.netlify.app/',
       img: Blackjack,
+      tags: [HTMLIcon, CSSIcon, JSIcon, ReactIcon, GitIcon],
       repo: 'https://github.com/Jpaulsisson/blackjack',
     },
     {
       name: 'Age Calculator',
       href: 'https://calculate-age-fem.netlify.app',
       img: AgeCalc,
+      tags: [HTMLIcon, SassIcon, JSIcon, GitIcon],
       repo: 'https://github.com/Jpaulsisson/age-calculator-app',
     },
     {
       name: 'Customizable Counter',
       href: 'https://customizable-counter.netlify.app',
       img: Counter,
+      tags: [HTMLIcon, CSSIcon, JSIcon, ReactIcon, GitIcon],
       repo: 'https://github.com/Jpaulsisson/wds-react-hooks-course/tree/main',
     },
   ]
+
+  const current:Project = {
+      name: 'Travel Planner',
+      href: '#',
+      img: Travel,
+      tags: [HTMLIcon, SassIcon, JSIcon, ReactIcon, GitIcon],
+      repo: '#',
+      status: 'Gathering API keys and wireframing'
+    };
+
+  function handleToggleRecent() {
+    openRecent === 'h-full' ? setOpenRecent('h-0') : setOpenRecent('h-full');
+  }
+  function handleToggleCurrent() {
+    openCurrent === 'h-full' ? setOpenCurrent('h-0') : setOpenCurrent('h-full');
+  }
 
   return (
     <main className='w-full max-w-cutoff flex flex-col items-center justify-center'>
@@ -60,11 +104,11 @@ function Works() {
       {/* skills */}
 
       <section className='my-10'>
-        <h2 className='text-3xl my-4 md:text-5xl'>proficiencies</h2>
+        <h2 className='text-3xl text-center my-4 md:text-5xl'>proficiencies</h2>
         <ul className=' grid grid-cols-2 text-xl md:text-2xl'>
           <li className='p-3 text-accentOrange'>HTML</li>
           <li className='p-3 text-accentBlue'>CSS</li>
-          <li className='p-3 text-blue-400'>React</li>
+          <li className='p-3 text-blue-300'>React</li>
           <li className='p-3 text-pink-500'>Sass</li>
           <li className='p-3 text-yellow-300'>Javascript</li>
           <li className='p-3 text-accentGreen'>Tailwind</li>
@@ -75,37 +119,55 @@ function Works() {
 
       {/* recent projects */}
 
-      <h2 className='text-3xl mb-2 md:text-5xl'>recent</h2>
-      <section className='p-2 mt-4 mb-10 rounded-lg max-h-[30vh] w-3/5 overflow-x-hidden overflow-y-scroll flex flex-col justify-between items-center shadow-sm shadow-zinc-950  landscape:max-h-[70vh]'>
-        {projects.map((project) => {
+      <h2 className='mb-10 text-center text-3xl md:text-5xl'>recent</h2>
+      <div className='w-4/5 carousel rounded-md'>
+        {projects.map((project, index) => {
           return (
-            <div key={project.name} className='flex flex-col items-center'>
-              <h3 className='text-accentGreen text-2xl text-center md:text-3xl'>{project.name}</h3>
-              <Image className='rounded-md' src={project.img} alt={project.name} />
-              <div className='flex w-3/4 text-primaryFont justify-around mb-4 border-accentOrange border-solid border-b-2 text-xl md:text-2xl'>
-                <a rel='noopener noreferrer' target='_blank' href={project.href}>see it</a>
-                <a rel='noopener noreferrer' target='_blank' href={project.repo}>see code</a>
-              </div>
+          <div id={`slide${index}`} key={project.name} className="carousel-item relative w-full p-1">
+            <Image src={project.img} alt={`screenshot of ${project.name}`} className="w-full" />
+            <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+              <a href={`#slide${index - 1}`} className="btn w-7 bg-opacity-50 border-primaryFont text-lg text-accentGreen p-0">❮</a> 
+              <a href={`#slide${index + 1}`} className="btn w-7 bg-opacity-50 border-primaryFont text-lg text-accentGreen p-0">❯</a>
             </div>
+            <div className={`more-info w-full inset-0 absolute ${openRecent} overflow-hidden bg-primaryBg opacity-90 flex flex-col items-center justify-center`}>
+              <a className='flex items-center justify-center text-accentGreen text-xl md:text-3xl' href={project.href} rel='noopener noreferrer' target='_blank'>{project.name}<Image src={OpenBox} alt='box with arrow' className='w-5 md:w-10' /></a>
+              <p className='text-xl md:text-2xl' >Tech stack:</p>
+              <div className='flex items-center justify-evenly'>
+                {project.tags.map((tag, index) => {
+                return <Image className='w-1/6' key={index} src={tag} alt={project.name}/>
+                })}
+              </div>
+              <a className='flex justify-center items-center text-xl md:text-2xl' href={project.repo} rel='noopener noreferrer' target='_blank'><span className='text-accentGreen text-2xl' >&#60;</span>github repo<span className='text-accentGreen text-2xl'>&#62;</span>
+              </a>
+            </div>
+          </div>
+          
           )
         })}
-      </section>
+      </div>
+      <button onClick={handleToggleRecent} className='mb-20 mt-4 rounded-md text-white w-1/4 border-solid border-[1px] border-accentOrange md:text-2xl'>More info</button>
 
       {/* current projects */}
 
-      <section className='mb-10 flex flex-col items-center justify-between'>
-        <h2 className='text-3xl mb-10 md:text-5xl'>current</h2>
-        <div className='w-full mb-3 relative flex items-center justify-center'>
-        <Image className='w-3/5' src={Travel} alt='adventure begins / a van on a long road' />
-        <h3 className='p-2 absolute w-3/5 text-accentGreen text-2xl font-light text-center backdrop-blur-md md:text-3xl'>Travel Planner</h3>
-        </div>
-        <div className='w-full mb-3 relative flex items-center justify-center'>
-        <Image className='w-3/5' src={Smite} alt='pic of Smite by Hi-Rez' />
-        <h3 className='p-2 absolute w-3/5 text-accentGreen text-2xl font-light text-center backdrop-blur-md md:text-3xl'>Smite Meta</h3>
-        </div>
-        <aside className='p-2 w-3/5 border-solid border-2 border-accentOrange rounded-lg text-sm md:text-lg'>Feel free to contact me about my current work if you&apos;d like to know more or collaborate.</aside>
-      </section>
-
+      <h2 className='mb-10 text-center text-3xl md:text-5xl'>current</h2>
+      <div className='w-4/5 relative'>
+          <div>
+            <Image src={Travel} alt='travel photo' className="w-full" />
+            <div className={`more-info w-full inset-0 absolute ${openCurrent} overflow-hidden bg-primaryBg opacity-90 flex flex-col items-center justify-center`}>
+              <h3 className='flex items-center justify-center text-accentGreen text-xl md:text-3xl'>Travel Planner</h3>
+              <p className='text-xl md:text-2xl' >Tech stack:</p>
+              <div className='flex items-center justify-evenly'>
+                {current.tags.map((tag, index) => {
+                return <Image className='w-1/6' key={index} src={tag} alt='programming language icon'/>
+                })}
+              </div>
+              <a className='flex justify-center items-center text-xl md:text-2xl' href='/contact' rel='noopener noreferrer' target='_blank'><span className='text-accentGreen text-2xl' >&#60;</span>collaborate<span className='text-accentGreen text-2xl'>&#62;</span>
+              </a>
+            </div>
+            
+          </div>
+      </div>
+      <button onClick={handleToggleCurrent} className='mb-20 mt-4 rounded-md text-white w-1/4 border-solid border-[1px] border-accentOrange md:text-2xl'>More info</button>
 
       {/* mini contact section */}
 
@@ -119,7 +181,7 @@ function Works() {
         <a className='' href='https://www.linkedin.com/in/jpaulsisson/' rel='noopener noreferrer' target='_blank'>
         <Image className='w-10 md:w-16' src={LinkedIn} alt='LinkedIn logo'/>
         </a>
-        <a href="https://github.com/Jpaulsisson">
+        <a href="https://github.com/Jpaulsisson" rel='noopener noreferrer' target='_blank'>
         <Image className='w-10 md:w-16' src={GitHub} alt='GitHub logo'/>
         </a>
       </footer>

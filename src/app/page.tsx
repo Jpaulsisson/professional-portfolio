@@ -93,7 +93,7 @@ export default function Home() {
         <a href='https://www.linkedin.com/in/jpaulsisson/' rel='noopener noreferrer' target='_blank'>
         <Image className='w-10 md:w-16' src={LinkedIn} alt='LinkedIn logo'/>
         </a>
-        <a href="https://github.com/Jpaulsisson">
+        <a href="https://github.com/Jpaulsisson" rel='noopener noreferrer' target='_blank'>
         <Image className='w-10 md:w-16' src={GitHub} alt='GitHub logo'/>
         </a>
       </footer>

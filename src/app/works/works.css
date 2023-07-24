@@ -1,0 +1,9 @@
+.more-info {
+  /* height: 100%; */
+  transition: all 750ms ease;
+}
+
+.carousel::-webkit-scrollbar {
+  display: inline;
+  height: 3px;
+}
