@@ -32,7 +32,6 @@
 ![CSS3 Icon](https://github.com/Jpaulsisson/blackjack/assets/107195036/8f06e450-42f8-4725-b9e9-3edf8d30d7cd)
 ![JS Icon](https://github.com/Jpaulsisson/blackjack/assets/107195036/cf03844b-6e3e-4865-9ace-4de585ddf07d)
 ![React Icon](https://github.com/Jpaulsisson/blackjack/assets/107195036/4902bbeb-4e7d-4b64-99e0-10b6adb2ebcd)
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Vitejs-logo.svg/128px-Vitejs-logo.svg.png" width="95" height="95" />
 <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/128px-Tailwind_CSS_Logo.svg.png' />
 <img src='./next.svg' alt='nextjs icon' width='100' />
 

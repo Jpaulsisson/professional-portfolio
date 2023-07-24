@@ -22,7 +22,7 @@ export default function Home() {
 
       {/* nav bar */}
 
-      <nav className='py-10 w-1/2 flex items-center justify-evenly gap-4 text-2xl '>
+      <nav className='py-10 w-1/2 flex items-center justify-evenly gap-4 text-2xl md:text-4xl'>
         <a className='text-accentOrange' href="/">home</a>
         <a href="/works">works</a>
         <a href="/contact">contact</a>
@@ -31,8 +31,8 @@ export default function Home() {
       {/* intro text */}
 
       <section className='my-10 flex flex-col items-center justify-center gap-4 text-center'>
-        <h1 className='flex items-center justify-center gap-2 tracking-wide text-3xl'><Image src={Hello} alt='Hello sign' width={75}/> I&apos;m Paul,</h1>
-        <p className='w-3/5 text-lg tracking-wide'>I&apos;m a growing frontend developer, a father & a husband, and I&apos;m in love with life. Let me save a few thousand words <sub className='text-accentGreen text-2xl'>&#10549;</sub></p>
+        <h1 className='flex items-center justify-center gap-2 tracking-wide text-3xl md:text-5xl'><Image src={Hello} alt='Hello sign' width={75}/> I&apos;m Paul,</h1>
+        <p className='w-3/5 text-lg tracking-wide md:text-2xl'>I&apos;m a growing frontend developer, a father & a husband, and I&apos;m in love with life. Let me save a few thousand words <sub className='text-accentGreen text-2xl md:text-4xl'>&#10549;</sub></p>
       </section>
 
       {/* photo grid */}
@@ -73,10 +73,10 @@ export default function Home() {
       {/* more about me */}
 
       <section className='w-3/4 my-10'>
-        <p className='p-4 text-lg text-center border-b-[1px] border-solid border-accentOrange'>
+        <p className='p-4 text-lg text-center border-b-[1px] border-solid border-accentOrange md:text-2xl'>
           The vast majority of my time goes to one of these people above or to code. I fell in love with coding the first time I made a <a className='text-accentGreen font-light underline' href='https://github.com/Jpaulsisson/sudoku/tree/main'>Sudoku algorithm</a> with javascript. The sense of accomplishment and pride when it worked, was almost overwhelming. Solving problems has always been a passion. Even my first grade teacher still calls me Paul <em>&quot;I have a better idea&quot;</em> Sisson. What can I say? I just <b className='text-accentOrange '>love</b> figuring out how things work and finding ways to make them better.
         </p>
-        <p className='p-4 text-center'>
+        <p className='p-4 text-center md:text-xl'>
           When the algorithms are put away, I&apos;m all about people. My family and friends, obviously, but also strangers. Nothing has ever enriched my life more than taking in the experiences of other people. Learning how they got to where they are today. Letting their stories be meaningful to me helps me connect with others in a way that gives me a deep love for them and their life, but it also teaches me how to be better than I was before.
         </p>
       </section>
@@ -84,17 +84,17 @@ export default function Home() {
       {/* mini contact section */}
 
       <footer className='mb-10 w-1/2 flex justify-between'>
-      <a className='' href='mailto: paulsissonsemail@gmail.com'>
-        <Image src={Email} alt='envelope' width={30} />
+      <a href='mailto: paulsissonsemail@gmail.com'>
+        <Image className='w-10 md:w-16' src={Email} alt='envelope'/>
       </a>
-        <a className='' href='tel: 2055208659'>
-        <Image src={Phone} alt='phone' width={30} />
+        <a href='tel: 2055208659'>
+        <Image className='w-10 md:w-16' src={Phone} alt='phone'/>
         </a>
-        <a className='' href='https://www.linkedin.com/in/jpaulsisson/' rel='noopener noreferrer' target='_blank'>
-        <Image src={LinkedIn} alt='LinkedIn logo' width={30} />
+        <a href='https://www.linkedin.com/in/jpaulsisson/' rel='noopener noreferrer' target='_blank'>
+        <Image className='w-10 md:w-16' src={LinkedIn} alt='LinkedIn logo'/>
         </a>
         <a href="https://github.com/Jpaulsisson">
-        <Image src={GitHub} alt='GitHub logo' width={30} />
+        <Image className='w-10 md:w-16' src={GitHub} alt='GitHub logo'/>
         </a>
       </footer>
     </main>
