@@ -2,16 +2,11 @@
 
 import './works.css';
 import Image, { StaticImageData } from 'next/image'
-import Email from '../../resources/email.svg'
-import Phone from '../../resources/phone.svg'
-import LinkedIn from '../../resources/linkedin.svg'
-import GitHub from '../../resources/github.svg'
 import CirclePainter  from '../../resources/circle-painter.png'
 import Blackjack  from '../../resources/blackjack.png'
 import AgeCalc  from '../../resources/age-calc.png'
 import Counter  from '../../resources/counter.png'
 import Retrofolio from '../../resources/retrofolio.png'
-import Smite from '../../resources/smite-meta.png'
 import Travel from '../../resources/travel.jpeg'
 import HTMLIcon from '../../resources/HTML-icon.svg'
 import CSSIcon from '../../resources/CSS-icon.svg'
@@ -21,6 +16,8 @@ import SassIcon from '../../resources/Sass-icon.svg'
 import GitIcon from '../../resources/Git-icon.svg'
 import OpenBox from '../../resources/open-box.svg'
 import { useState } from 'react';
+import Footer from '@/components/footer/footer.component';
+
 
 type Project = {
   name: string,
@@ -120,16 +117,18 @@ function Works() {
       {/* recent projects */}
 
       <h2 className='mb-10 text-center text-3xl md:text-5xl'>recent</h2>
-      <div className='w-4/5 carousel rounded-md'>
+      <div className='w-4/5 carousel rounded-md relative'>
+        
         {projects.map((project, index) => {
           return (
           <div id={`slide${index}`} key={project.name} className="carousel-item relative w-full p-1">
+            <a href={project.href} rel='noopener noreferrer' target='_blank' className='w-9/12 h-full min-w-[50%] min-h-full absolute inset-0 mx-auto bg-transparent z-10'> </a>
             <Image src={project.img} alt={`screenshot of ${project.name}`} className="w-full" />
             <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
               <a href={`#slide${index - 1}`} className="btn w-7 bg-opacity-50 border-primaryFont text-lg text-accentGreen p-0">❮</a> 
               <a href={`#slide${index + 1}`} className="btn w-7 bg-opacity-50 border-primaryFont text-lg text-accentGreen p-0">❯</a>
             </div>
-            <div className={`more-info w-full inset-0 absolute ${openRecent} overflow-hidden bg-primaryBg opacity-90 flex flex-col items-center justify-center`}>
+            <div className={`more-info w-full inset-0 absolute ${openRecent} overflow-hidden bg-primaryBg opacity-90 flex flex-col items-center justify-center z-20`}>
               <a className='flex items-center justify-center text-accentGreen text-xl md:text-3xl' href={project.href} rel='noopener noreferrer' target='_blank'>{project.name}<Image src={OpenBox} alt='box with arrow' className='w-5 md:w-10' /></a>
               <p className='text-xl md:text-2xl' >Tech stack:</p>
               <div className='flex items-center justify-evenly'>
@@ -161,7 +160,7 @@ function Works() {
                 return <Image className='w-1/6' key={index} src={tag} alt='programming language icon'/>
                 })}
               </div>
-              <a className='flex justify-center items-center text-xl md:text-2xl' href='/contact' rel='noopener noreferrer' target='_blank'><span className='text-accentGreen text-2xl' >&#60;</span>collaborate<span className='text-accentGreen text-2xl'>&#62;</span>
+              <a className='flex justify-center items-center text-xl md:text-2xl' href='/contact'><span className='text-accentGreen text-2xl' >&#60;</span>collaborate<span className='text-accentGreen text-2xl'>&#62;</span>
               </a>
             </div>
             
@@ -169,22 +168,9 @@ function Works() {
       </div>
       <button onClick={handleToggleCurrent} className='mb-20 mt-4 rounded-md text-white w-1/4 border-solid border-[1px] border-accentOrange md:text-2xl'>More info</button>
 
-      {/* mini contact section */}
+      {/* footer */}
 
-      <footer className='mb-10 w-1/2 flex justify-between'>
-      <a className='' href='mailto: paulsissonsemail@gmail.com'>
-        <Image className='w-10 md:w-16' src={Email} alt='envelope'/>
-      </a>
-        <a className='' href='tel: 2055208659'>
-        <Image className='w-10 md:w-16' src={Phone} alt='phone'/>
-        </a>
-        <a className='' href='https://www.linkedin.com/in/jpaulsisson/' rel='noopener noreferrer' target='_blank'>
-        <Image className='w-10 md:w-16' src={LinkedIn} alt='LinkedIn logo'/>
-        </a>
-        <a href="https://github.com/Jpaulsisson" rel='noopener noreferrer' target='_blank'>
-        <Image className='w-10 md:w-16' src={GitHub} alt='GitHub logo'/>
-        </a>
-      </footer>
+      <Footer />
     </main>
   )
 }

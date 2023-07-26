@@ -1,3 +1,5 @@
+"use client"
+
 import Image from 'next/image'
 import Hello from '../resources/hello-sign.png'
 import Wifey from '../resources/wifey.jpg'
@@ -14,9 +16,19 @@ import Email from '../resources/email.svg'
 import Phone from '../resources/phone.svg'
 import LinkedIn from '../resources/linkedin.svg'
 import GitHub from '../resources/github.svg'
+import Modal from 'react-modal'
+import { useState } from 'react'
+import Footer from '@/components/footer/footer.component'
 
 
 export default function Home() {
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  function toggleModal() {
+    setModalOpen(!modalOpen);
+  }
+
   return (
     <main className='w-full max-w-cutoff flex flex-col items-center justify-center'>
 
@@ -29,14 +41,14 @@ export default function Home() {
       </nav>
 
       {/* intro text */}
-
+{/* MAYBE ADD 1 OR 2 LINES */}
       <section className='my-10 flex flex-col items-center justify-center gap-4 text-center'>
         <h1 className='flex items-center justify-center gap-2 tracking-wide text-3xl md:text-5xl'><Image src={Hello} alt='Hello sign' width={75}/> I&apos;m Paul,</h1>
         <p className='w-3/5 text-lg tracking-wide md:text-2xl'>I&apos;m a growing frontend developer, a father & a husband, and I&apos;m in love with life. Let me save a few thousand words <sub className='text-accentGreen text-2xl md:text-4xl'>&#10549;</sub></p>
       </section>
 
       {/* photo grid */}
-
+{/* CUT 1/2 MINIMUM */}
       <section className='w-4/5 mb-10 grid items-center justify-center gap-3'>
         <div className="rounded-md col-start-1 col-span-3 row-start-1 row-span-2">
           <Image className='rounded-xl' src={Wifey} alt='my hot wife' />
@@ -71,7 +83,7 @@ export default function Home() {
       </section>
 
       {/* more about me */}
-
+{/* CUT MOST OR ALL OF THIS */}
       <section className='w-3/4 my-10'>
         <p className='p-4 text-lg text-center border-b-[1px] border-solid border-accentOrange md:text-2xl'>
           The vast majority of my time goes to one of these people above or to code. I fell in love with coding the first time I made a <a className='text-accentGreen font-light underline' href='https://github.com/Jpaulsisson/sudoku/tree/main'>Sudoku algorithm</a> with javascript. The sense of accomplishment and pride when it worked, was almost overwhelming. Solving problems has always been a passion. Even my first grade teacher still calls me Paul <em>&quot;I have a better idea&quot;</em> Sisson. What can I say? I just <b className='text-accentOrange '>love</b> figuring out how things work and finding ways to make them better.
@@ -81,22 +93,9 @@ export default function Home() {
         </p>
       </section>
 
-      {/* mini contact section */}
+      {/* footer */}
 
-      <footer className='mb-10 w-1/2 flex justify-between'>
-      <a href='mailto: paulsissonsemail@gmail.com'>
-        <Image className='w-10 md:w-16' src={Email} alt='envelope'/>
-      </a>
-        <a href='tel: 2055208659'>
-        <Image className='w-10 md:w-16' src={Phone} alt='phone'/>
-        </a>
-        <a href='https://www.linkedin.com/in/jpaulsisson/' rel='noopener noreferrer' target='_blank'>
-        <Image className='w-10 md:w-16' src={LinkedIn} alt='LinkedIn logo'/>
-        </a>
-        <a href="https://github.com/Jpaulsisson" rel='noopener noreferrer' target='_blank'>
-        <Image className='w-10 md:w-16' src={GitHub} alt='GitHub logo'/>
-        </a>
-      </footer>
+      <Footer />
     </main>
   );
 }

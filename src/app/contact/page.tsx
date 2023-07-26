@@ -1,10 +1,26 @@
+"use client"
+
 import Image from 'next/image'
 import Email from '../../resources/email.svg'
 import Phone from '../../resources/phone.svg'
 import LinkedIn from '../../resources/linkedin.svg'
 import GitHub from '../../resources/github.svg'
+import { useState, useEffect } from 'react'
+import StyledModal from '@/components/styled-modal/styled-modal.component'
 
 function Contact() {
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    setActive(modalOpen);
+  }, [modalOpen])
+
+  function toggleModal() {
+    setModalOpen(!modalOpen);
+  }
+
   return (
     <main className='w-full max-w-cutoff flex flex-col items-center justify-center'>
 
@@ -19,10 +35,11 @@ function Contact() {
       {/* contact info */}
 
       <section className=' min-h-screen flex flex-col gap-8 mt-2 md:mt-6 md:gap-12'>
-      <a className='' href='mailto: paulsissonsemail@gmail.com'>
+      <a className='' onClick={toggleModal} >
         <Image className='w-28 md:w-40 ' src={Email} alt='envelope' />
       </a>
-        <a className='' href='tel: 2055208659'>
+      <StyledModal modalOpen={modalOpen} toggleModal={toggleModal} active={active} />
+        <a className='' onClick={toggleModal}>
         <Image className='w-28 md:w-40 ' src={Phone} alt='phone' />
         </a>
         <a className='' href='https://www.linkedin.com/in/jpaulsisson/' rel='noopener noreferrer' target='_blank'>

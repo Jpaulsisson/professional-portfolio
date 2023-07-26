@@ -1,6 +1,5 @@
 .more-info {
-  /* height: 100%; */
-  transition: all 750ms ease;
+  transition: all 600ms ease;
 }
 
 .carousel::-webkit-scrollbar {

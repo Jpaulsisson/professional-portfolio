@@ -19,7 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`bg-primaryBg font-thin text-primaryFont flex flex-col items-center justify-center ${josefin.className}`}>{children}</body>
+      <body className={`bg-primaryBg font-thin text-primaryFont flex flex-col items-center justify-center ${josefin.className}`}>
+        {children}
+        </body>
     </html>
   )
 }
