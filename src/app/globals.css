@@ -35,3 +35,13 @@ img {
   background-color: var(--accentOrange);
 }
 
+.photo-grid {
+  background-image: radial-gradient(antiquewhite 0% 4%, transparent 4% 100%);
+  background-size: 5% 5%;
+  background-repeat: repeat;
+  box-shadow: 
+  inset 0px 0px 25px var(--primaryBg),
+  inset 0px 0px 50px var(--primaryBg),
+  inset 0px 0px 50px var(--primaryBg),
+  inset 0px 0px 100px var(--primaryBg);
+}

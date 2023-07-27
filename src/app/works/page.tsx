@@ -169,7 +169,7 @@ function Works() {
       <button onClick={handleToggleCurrent} className='mb-20 mt-4 rounded-md text-white w-1/4 border-solid border-[1px] border-accentOrange md:text-2xl'>More info</button>
 
       {/* footer */}
-
+      <div className=' brightness-75 flex items-center justify-evenly w-1/2 mb-8 text-md text-accentOrange md:text-xl md:mb-16'><a className='text-primaryFont' href='/'>home</a> || <a className='text-primaryFont' href='/contact'>contact</a></div>
       <Footer />
     </main>
   )
