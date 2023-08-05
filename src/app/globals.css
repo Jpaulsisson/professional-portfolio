@@ -43,5 +43,6 @@ img {
   inset 0px 0px 25px var(--primaryBg),
   inset 0px 0px 50px var(--primaryBg),
   inset 0px 0px 50px var(--primaryBg),
+  inset 0px 0px 100px var(--primaryBg),
   inset 0px 0px 100px var(--primaryBg);
 }

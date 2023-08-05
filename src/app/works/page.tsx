@@ -114,10 +114,10 @@ function Works() {
         </ul>
       </section>
 
-      {/* recent projects */}
+      {/* recent projects carousel */}
 
       <h2 className='mb-10 text-center text-3xl md:text-5xl'>recent</h2>
-      <div className='w-4/5 carousel rounded-md relative'>
+      <div className='w-4/5 carousel rounded-md relative transition-all  '>
         
         {projects.map((project, index) => {
           return (
