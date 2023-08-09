@@ -102,15 +102,16 @@ function Works() {
 
       <section className='my-10'>
         <h2 className='text-3xl text-center my-4 md:text-5xl'>proficiencies</h2>
-        <ul className=' grid grid-cols-2 text-xl md:text-2xl'>
+        <ul className=' grid grid-cols-3 text-xl md:text-2xl'>
           <li className='p-3 text-accentOrange'>HTML</li>
           <li className='p-3 text-accentBlue'>CSS</li>
+          <li className='p-3 text-yellow-300'>Javascript</li>
           <li className='p-3 text-blue-300'>React</li>
           <li className='p-3 text-pink-500'>Sass</li>
-          <li className='p-3 text-yellow-300'>Javascript</li>
+          <li className='p-3 text-accentBlue'>Typescript</li>
           <li className='p-3 text-accentGreen'>Tailwind</li>
           <li className='p-3 text-accentOrange'>Git</li>
-          <li className='p-3 text-accentBlue'>Typescript</li>
+          <li className='p-3 text-accentPurple'>Bootstrap</li>
         </ul>
       </section>
 
