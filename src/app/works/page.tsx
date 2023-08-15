@@ -124,7 +124,7 @@ function Works() {
           return (
           <div id={`slide${index}`} key={project.name} className="carousel-item relative w-full p-1">
             <a href={project.href} rel='noopener noreferrer' target='_blank' className='w-7/12 h-full min-w-[50%] min-h-full absolute inset-0 mx-auto bg-transparent z-10'> </a>
-            <Image src={project.img} alt={`screenshot of ${project.name}`} className="w-full" />
+            <Image src={project.img} alt={`${project.name}`} className="w-full" />
             <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
               <a href={`#slide${index - 1}`} className="btn w-7 bg-opacity-50 border-primaryFont text-lg text-accentGreen p-0">❮</a> 
               <a href={`#slide${index + 1}`} className="btn w-7 bg-opacity-50 border-primaryFont text-lg text-accentGreen p-0">❯</a>

@@ -6,6 +6,9 @@ import Wifey from '../resources/wifey.jpg'
 import KidOne from '../resources/kid-one.jpg'
 import KidTwo from '../resources/kid-two.jpg'
 import Bday from '../resources/muhbday.jpeg'
+import ReactIcon from '../resources/React-icon.svg';
+import SvelteIcon from '../resources/svelte-icon.svg';
+
 import { useState } from 'react'
 import Footer from '@/components/footer/footer.component'
 
@@ -23,10 +26,21 @@ export default function Home() {
 
       {/* nav bar */}
 
-      <nav className='py-10 w-1/2 flex items-center justify-evenly gap-4 text-2xl md:text-4xl'>
+      <nav className='py-10 relative w-1/2 flex items-center justify-evenly gap-4 text-2xl md:text-4xl'>
         <a className='text-accentOrange' href="/">home</a>
         <a href="/works">works</a>
         <a href="/contact">contact</a>
+        
+        {/* framework switch  */}
+
+        {/* <a href="https://jpaulsisson.vercel.app/" className="p-0 h-[25px] w-28 absolute inset-0 flex items-center justify-center bg-primaryBg rounded-full border-[1px] border-primaryFont">
+          <div className="h-full w-full">
+            <Image src={SvelteIcon} alt="svelte icon" className="dampen w-full h-full brightness-[30%] rounded-full "/>
+          </div>
+          <div className="h-full w-full">
+            <Image src={ReactIcon} alt="react icon" className="w-full h-full bg-gray-600 rounded-full border-[1px] border-accentGreen"/>
+          </div>
+        </a> */}
       </nav>
 
       {/* intro text */}

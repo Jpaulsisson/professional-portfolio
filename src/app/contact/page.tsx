@@ -22,8 +22,8 @@ function Contact() {
   }
 
   return (
-    <main className='w-full min-h-screen max-w-cutoff flex flex-col items-center justify-center'>
-
+    <main className='w-full min-h-screen max-w-cutoff flex flex-col items-center'>
+  
       {/* nav bar */}
 
       <nav className='py-10 w-1/2 flex items-center justify-evenly gap-4 text-2xl md:text-4xl'>
@@ -34,7 +34,7 @@ function Contact() {
       
       {/* contact info */}
 
-      <section className=' flex flex-col gap-8 mt-2 md:mt-6 md:gap-12'>
+      <section className=' flex flex-col gap-8 md:gap-12'>
       <a className='' onClick={toggleModal} >
         <Image className='w-28 md:w-40 ' src={Email} alt='envelope' />
       </a>
