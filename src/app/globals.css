@@ -21,10 +21,6 @@
   scroll-snap-align: start;
 }
 
-*:focus {
-  outline: 2px solid var(--accentGreen);
-}
-
 img {
   max-width: 100%;
   max-height: 100%;

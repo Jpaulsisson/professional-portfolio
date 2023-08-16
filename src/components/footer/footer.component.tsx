@@ -23,22 +23,42 @@ function Footer() {
   }
 
   return (
-    <footer className='mb-10 w-1/2 flex justify-between'>
-      <a className=' cursor-pointer' onClick={toggleModal}>
-        <Image className='w-10 md:w-16' src={Email} alt='envelope'/>
+    <footer className="mb-10 w-1/2 flex justify-between">
+      {/* modal */}
+
+      <StyledModal
+        modalOpen={modalOpen}
+        toggleModal={toggleModal}
+        active={active}
+      />
+
+      {/* footer content */}
+
+      <button className=" cursor-pointer" onClick={toggleModal}>
+        <Image className="w-10 md:w-16" src={Email} alt="envelope" />
+      </button>
+
+      <button className="cursor-pointer" onClick={toggleModal}>
+        <Image className="w-10 md:w-16" src={Phone} alt="phone" />
+      </button>
+      <a
+        className=""
+        href="https://www.linkedin.com/in/jpaulsisson/"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <Image className="w-10 md:w-16" src={LinkedIn} alt="LinkedIn logo" />
       </a>
-      <StyledModal modalOpen={modalOpen} toggleModal={toggleModal} active={active} />
-        <a className='cursor-pointer' onClick={toggleModal}>
-        <Image className='w-10 md:w-16' src={Phone} alt='phone'/>
-        </a>
-        <a className='' href='https://www.linkedin.com/in/jpaulsisson/' rel='noopener noreferrer' target='_blank'>
-        <Image className='w-10 md:w-16' src={LinkedIn} alt='LinkedIn logo'/>
-        </a>
-        <a href="https://github.com/Jpaulsisson" rel='noopener noreferrer' target='_blank'>
-        <Image className='w-10 md:w-16' src={GitHub} alt='GitHub logo'/>
-        </a>
-      </footer>
-  )
+      <a
+        href="https://github.com/Jpaulsisson"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <Image className="w-10 md:w-16" src={GitHub} alt="GitHub logo" />
+      </a>
+      
+    </footer>
+  );
 }
 
 export default Footer
