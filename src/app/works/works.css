@@ -2,7 +2,21 @@
   transition: all 600ms ease;
 }
 
-.carousel::-webkit-scrollbar {
-  display: inline;
-  height: 3px;
+.carousel-button {
+  transform: translateY(-50%);
+}
+
+.carousel-button:hover,
+.carousel-button:focus {
+  opacity: 1;
+  outline: 3px solid var(--accentGreen);
+}
+
+.carousel-container {
+  width: clamp(320px, 80vw, 750px);
+  aspect-ratio: 16/9;
+}
+
+.car-slide {
+  transition: opacity 500ms;
 }

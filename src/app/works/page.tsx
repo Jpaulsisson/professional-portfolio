@@ -1,6 +1,9 @@
 "use client"
 
 import './works.css';
+
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+
 import Image, { StaticImageData } from 'next/image'
 import CirclePainter  from '../../resources/circle-painter.png'
 import Blackjack  from '../../resources/blackjack.png'
@@ -14,8 +17,9 @@ import JSIcon from '../../resources/JS-icon.svg'
 import ReactIcon from '../../resources/React-icon.svg'
 import SassIcon from '../../resources/Sass-icon.svg'
 import GitIcon from '../../resources/Git-icon.svg'
-import OpenBox from '../../resources/open-box.svg'
+
 import { useState } from 'react';
+
 import Footer from '@/components/footer/footer.component';
 
 
@@ -32,6 +36,7 @@ function Works() {
 
   const [openRecent, setOpenRecent] = useState('h-0');
   const [openCurrent, setOpenCurrent] = useState('h-0');
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const projects:Project[] = [
     {
@@ -86,6 +91,12 @@ function Works() {
   function handleToggleCurrent() {
     openCurrent === 'h-full' ? setOpenCurrent('h-0') : setOpenCurrent('h-full');
   }
+  function handlePrev() {
+    currentSlide === 0 ? setCurrentSlide(projects.length - 1) : setCurrentSlide((currentSlide) => currentSlide -= 1);
+  }
+  function handleNext() {
+    currentSlide === projects.length - 1 ? setCurrentSlide(0) : setCurrentSlide((currentSlide) => currentSlide += 1);
+  }
 
   return (
     <main className='w-full max-w-cutoff flex flex-col items-center justify-center'>
@@ -115,41 +126,68 @@ function Works() {
         </ul>
       </section>
 
-      {/* recent projects carousel */}
+      {/* recent projects header */}
 
       <h2 className='mb-10 text-center text-3xl md:text-5xl'>recent</h2>
-      <div className='w-4/5 carousel rounded-md relative transition-all  '>
-        
-        {projects.map((project, index) => {
-          return (
-          <div id={`slide${index}`} key={project.name} className="carousel-item relative w-full p-1">
-            <a href={project.href} rel='noopener noreferrer' target='_blank' className='w-7/12 h-full min-w-[50%] min-h-full absolute inset-0 mx-auto bg-transparent z-10'> </a>
-            <Image src={project.img} alt={`${project.name}`} className="w-full" />
-            <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-              <a href={`#slide${index - 1}`} className="btn w-7 bg-opacity-50 border-primaryFont text-lg text-accentGreen p-0">❮</a> 
-              <a href={`#slide${index + 1}`} className="btn w-7 bg-opacity-50 border-primaryFont text-lg text-accentGreen p-0">❯</a>
-            </div>
-            <div className={`more-info w-full inset-0 absolute ${openRecent} overflow-hidden bg-primaryBg opacity-90 flex flex-col items-center justify-center z-20`}>
-              <a className='flex items-center justify-center text-accentGreen text-xl md:text-3xl' href={project.href} rel='noopener noreferrer' target='_blank'>{project.name}<Image src={OpenBox} alt='box with arrow' className='w-5 md:w-10' /></a>
-              <p className='text-xl md:text-2xl' >Tech stack:</p>
-              <div className='flex items-center justify-evenly'>
-                {project.tags.map((tag, index) => {
-                return <Image className='w-1/6' key={index} src={tag} alt={project.name}/>
-                })}
-              </div>
-              <a className='flex justify-center items-center text-xl md:text-2xl' href={project.repo} rel='noopener noreferrer' target='_blank'><span className='text-accentGreen text-2xl' >&#60;</span>github repo<span className='text-accentGreen text-2xl'>&#62;</span>
-              </a>
-            </div>
-          </div>
-          
-          )
-        })}
-      </div>
-      <button onClick={handleToggleRecent} className='mb-20 mt-4 rounded-md text-white w-1/4 border-solid border-[1px] border-accentOrange md:text-2xl'>More info</button>
 
-      {/* current projects */}
+      {/* recent projects carousel */}
+
+      <section aria-label="my recent projects">
+
+          {/* carousel start */}
+        <div className="carousel-container relative">
+          
+          {/* prev and next buttons */}
+
+          <button onClick={handlePrev} className=" carousel-button z-10 p-2 absolute top-1/2 left-2 text-2xl opacity-50 bg-primaryBg rounded-full">
+            <FaArrowLeft />
+          </button>
+          <button onClick={handleNext} className=" carousel-button z-10 p-2 absolute top-1/2 right-2 text-2xl opacity-50 bg-primaryBg rounded-full">
+            <FaArrowRight />
+          </button>
+
+          {/* carousel cards */}
+
+          <ul className='list-none'>
+            {projects.map(({name, href, img, tags, repo }, index) => {
+              return (
+              <li key={index} className={`car-slide ${currentSlide === index ? 'opacity-100' : 'opacity-0'} absolute inset-0 transition-opacity-[5000ms]`}>
+                <a href={href} aria-label={name + ' live site'} rel="noopener noreferrer" target="_blank" className="absolute z-40 bg-transparent w-8/12 h-3/4 inset-0 m-auto"> </a>
+                <Image src={img} alt={name} className="rounded-md" />
+                
+                {/* more info content */}
+
+                <div className={`more-info overflow-hidden w-full inset-0 absolute ${openRecent} bg-primaryBg opacity-95 flex flex-col items-center justify-center`}>
+                  <h3 className='flex items-center justify-center text-accentGreen text-xl md:text-3xl'>{name}</h3>
+                  <p className='text-xl md:text-2xl' >Tech stack:</p>
+                  <div className='flex items-center justify-around gap-2 md:gap-6'>
+                    {tags.map((tag, index) => {
+                      return <Image key={index} src={tag} alt={name} className=' w-10 md:w-[10%]'/>
+                    })}
+                  </div>
+                  <a className='flex justify-center items-center text-xl md:text-2xl' target="_blank" rel="noopener noreferrer" href={repo}><span className='text-accentGreen text-2xl' >&#60;</span>github repo<span className='text-accentGreen text-2xl'>&#62;</span>
+                  </a>
+                </div>
+              </li>
+              )
+            })}
+          </ul>
+
+      {/* end carousel cards */}
+          
+        </div>
+      </section>
+
+      {/* more info button */}
+
+      <button onClick={handleToggleRecent} className='mb-20 mt-4 rounded-md text-primaryFont w-1/4 border-[1px] border-accentGreen md:text-2xl'>More info</button>
+
+      {/* current project header */}
 
       <h2 className='mb-10 text-center text-3xl md:text-5xl'>current</h2>
+
+      {/* current project card */}
+
       <div className='w-4/5 relative'>
           <div>
             <Image src={Travel} alt='travel photo' className="w-full" />
@@ -167,11 +205,27 @@ function Works() {
             
           </div>
       </div>
+
+      {/* more info button */}
+
       <button onClick={handleToggleCurrent} className='mb-20 mt-4 rounded-md text-white w-1/4 border-solid border-[1px] border-accentOrange md:text-2xl'>More info</button>
 
-      {/* footer */}
-      <div className=' brightness-75 flex items-center justify-evenly w-1/2 mb-8 text-md text-accentOrange md:text-xl md:mb-16'><a className='text-primaryFont' href='/'>home</a> || <a className='text-primaryFont' href='/contact'>contact</a></div>
+      {/* mini-nav */}
+
+      <div className=' brightness-75 flex items-center justify-evenly w-1/2 mb-8 text-md text-accentOrange md:text-xl md:mb-16'>
+        <a className='text-primaryFont' href='/'>
+          home
+        </a>
+        || 
+        <a className='text-primaryFont' href='/contact'>
+          contact
+        </a>
+      </div>
+      
+       {/* footer */}
+      
       <Footer />
+    
     </main>
   )
 }
