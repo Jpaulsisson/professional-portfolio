@@ -32,19 +32,19 @@ export default function Home() {
         <a href="/contact">contact</a>
         
         {/* framework switch  */}
-
-        {/* <a href="https://jpaulsisson.vercel.app/" className="p-0 h-[25px] w-28 absolute inset-0 flex items-center justify-center bg-primaryBg rounded-full border-[1px] border-primaryFont">
+        {/* still haven't decided on whether I like this */}
+        {/* <a href="https://jpaulsisson-svelte.netlify.app/" className="p-0 h-[25px] w-28 absolute inset-0 flex items-center justify-center bg-primaryBg rounded-full border-thin border-primaryFont">
           <div className="h-full w-full">
             <Image src={SvelteIcon} alt="svelte icon" className="dampen w-full h-full brightness-[30%] rounded-full "/>
           </div>
           <div className="h-full w-full">
-            <Image src={ReactIcon} alt="react icon" className="w-full h-full bg-gray-600 rounded-full border-[1px] border-accentGreen"/>
+            <Image src={ReactIcon} alt="react icon" className="w-full h-full bg-gray-600 rounded-full border-thin border-accentGreen"/>
           </div>
         </a> */}
       </nav>
 
       {/* intro text */}
-{/* MAYBE ADD 1 OR 2 LINES */}
+
       <section className='my-10 flex flex-col items-center justify-center gap-4 text-center'>
         <h1 className='flex items-center justify-center gap-2 tracking-wide text-3xl md:text-5xl'><Image src={Hello} alt='Hello sign' width={75}/> I&apos;m Paul,</h1>
         <p className='w-3/5 text-lg tracking-wide md:text-2xl'>I&apos;m a frontend software engineer from Birmingham, AL. Let me save a few thousand words <sub className='text-accentGreen text-2xl md:text-4xl'>&#10549;</sub></p>

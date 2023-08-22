@@ -32,11 +32,69 @@ type Project = {
   status?: string
 }
 
+type Skill = {
+  name: string,
+  color: string,
+}
+
 function Works() {
 
   const [openRecent, setOpenRecent] = useState('h-0');
   const [openCurrent, setOpenCurrent] = useState('h-0');
   const [currentSlide, setCurrentSlide] = useState(0);
+
+
+
+  const skills:Skill[] = [
+    {
+      name: 'HTML',
+      color: 'text-accentOrange',
+    },
+    {
+      name: 'CSS',
+      color: 'text-accentBlue',
+    },
+    {
+      name: 'JavaScript',
+      color: 'text-yellow-300',
+    },
+    {
+      name: 'React',
+      color: 'text-blue-300',
+    },
+    {
+      name: 'Sass',
+      color: 'text-pink-500',
+    },
+    {
+      name: 'TypeScript',
+      color: 'text-accentBlue',
+    },
+    {
+      name: 'Tailwind',
+      color: 'text-accentGreen',
+    },
+    {
+      name: 'Git',
+      color: 'text-accentOrange',
+    },
+    {
+      name: 'Bootstrap',
+      color: 'text-purple-500',
+    },
+    {
+      name: 'Svelte',
+      color: 'text-red-400',
+    },
+    {
+      name: 'SQL',
+      color: 'text-amber-200',
+    },
+    {
+      name: 'PostgreSQL',
+      color: 'text-sky-600',
+    },
+  ]
 
   const projects:Project[] = [
     {
@@ -114,15 +172,9 @@ function Works() {
       <section className='my-10'>
         <h2 className='text-3xl text-center my-4 md:text-5xl'>proficiencies</h2>
         <ul className=' grid grid-cols-3 text-xl md:text-2xl'>
-          <li className='p-3 text-accentOrange'>HTML</li>
-          <li className='p-3 text-accentBlue'>CSS</li>
-          <li className='p-3 text-yellow-300'>Javascript</li>
-          <li className='p-3 text-blue-300'>React</li>
-          <li className='p-3 text-pink-500'>Sass</li>
-          <li className='p-3 text-accentBlue'>Typescript</li>
-          <li className='p-3 text-accentGreen'>Tailwind</li>
-          <li className='p-3 text-accentOrange'>Git</li>
-          <li className='p-3 text-accentPurple'>Bootstrap</li>
+          {skills.map(({name, color}, i) => {
+            return <li key={i} className={`p-3 ${color}`}>{name}</li>
+          })}
         </ul>
       </section>
 
@@ -180,7 +232,7 @@ function Works() {
 
       {/* more info button */}
 
-      <button onClick={handleToggleRecent} className='mb-20 mt-4 rounded-md text-primaryFont w-1/4 border-[1px] border-accentGreen md:text-2xl'>More info</button>
+      <button onClick={handleToggleRecent} className='mb-20 mt-4 rounded-md text-primaryFont w-1/4 border-thin border-accentOrange md:text-2xl'>More info</button>
 
       {/* current project header */}
 
@@ -208,7 +260,7 @@ function Works() {
 
       {/* more info button */}
 
-      <button onClick={handleToggleCurrent} className='mb-20 mt-4 rounded-md text-white w-1/4 border-solid border-[1px] border-accentOrange md:text-2xl'>More info</button>
+      <button onClick={handleToggleCurrent} className='mb-20 mt-4 rounded-md text-white w-1/4 border-solid border-thin border-accentOrange md:text-2xl'>More info</button>
 
       {/* mini-nav */}
 

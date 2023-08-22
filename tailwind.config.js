@@ -13,10 +13,12 @@ module.exports = {
         'accentOrange': 'var(--accentOrange)',
         'accentGreen': 'var(--accentGreen)',
         'accentBlue': 'var(--accentBlue)',
-        'accentPurple': 'var(--accentPurple)',
       },
       maxWidth: {
         'cutoff': '850px'
+      },
+      borderWidth: {
+        'thin': '1px'
       }
     },
   },
