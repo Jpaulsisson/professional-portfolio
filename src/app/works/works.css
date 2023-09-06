@@ -1,3 +1,9 @@
+.skills {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+}
+
 .more-info {
   transition: all 600ms ease;
 }
@@ -20,3 +26,4 @@
 .car-slide {
   transition: opacity 500ms;
 }
+

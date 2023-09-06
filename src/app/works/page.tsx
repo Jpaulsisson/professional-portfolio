@@ -94,6 +94,15 @@ function Works() {
       name: 'PostgreSQL',
       color: 'text-sky-600',
     },
+    {
+      name: 'NodeJS',
+      color: 'text-lime-600',
+    },
+    {
+      name: 'ExpressJS',
+      color: 'text-slate-300',
+    },
+
   ]
 
   const projects:Project[] = [
@@ -169,11 +178,11 @@ function Works() {
 
       {/* skills */}
 
-      <section className='my-10'>
+      <section className='my-10 w-full flex flex-col items-center justify-center'>
         <h2 className='text-3xl text-center my-4 md:text-5xl'>proficiencies</h2>
-        <ul className=' grid grid-cols-3 text-xl md:text-2xl'>
+        <ul className='skills w-3/4 gap-2 text-lg md:text-2xl'>
           {skills.map(({name, color}, i) => {
-            return <li key={i} className={`p-3 ${color}`}>{name}</li>
+            return <li key={i} className={`${color}`}>{name}</li>
           })}
         </ul>
       </section>
