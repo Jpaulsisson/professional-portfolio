@@ -6,7 +6,7 @@ import Wifey from '../resources/wifey.jpg'
 import KidOne from '../resources/kid-one.jpg'
 import KidTwo from '../resources/kid-two.jpg'
 import Bday from '../resources/muhbday.jpeg'
-import { supabase } from '../app/utils/supabase'
+import { supabase } from '../app/utils/supabase.js'
 
 import { useState, useEffect } from 'react'
 import Footer from '@/components/footer/footer.component'
@@ -16,24 +16,44 @@ export default function Home() {
 
   useEffect(() => {
     const fetchComments = async() => {
-      const { data, error } = await supabase.from('messages').select('*').order('id', {ascending: false}).range(0, 4)
+      const { data: messages, error } = await supabase.from('messages').select('*').order('id', {ascending: false})
 
       if (error){
         console.log('error', error)
       } else {
-        setComments(data);
+        if (messages) {
+          console.log(messages);
+        setComments(messages);
+        }
       } 
     }
 
     fetchComments();
   }, [])
 
+  // useEffect(() => {
+  //   const getUser = async() => {
+  //     const 
+  //   }
+  // })
 
+  const [comments, setComments] = useState<any[]>([]);
   const [comments, setComments] = useState<any[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
 
   function toggleModal() {
     setModalOpen(!modalOpen);
+  }
+
+  function formatTimestamp(timestamp: string) {
+    const date = new Date(timestamp);
+    const time = new Date(timestamp);
+    const formattedDate =  date.toLocaleDateString('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: '2-digit'});
+    const formattedTime = time.toLocaleTimeString('en-US')
+    return {
+      formattedDate: formattedDate,
+      formattedTime: formattedTime
+    };
   }
 
   return (
@@ -75,15 +95,16 @@ export default function Home() {
 
       <section className='w-3/4 my-10 border-thin border-accentGreen rounded-2xl p-2'>
         <div className='p-4 bg-primaryFont rounded-xl text-primaryBg'>
-          <h3 className='text-3xl text-right font-medium text-accentBlue'>Leave me a message!</h3>
+          <h3 className='text-3xl text-right font-medium text-accentBlue'>Leave me a message</h3>
           <div className="comments-wrapper grid grid-cols-4 gap-4">
             {comments.map((comment) => {
             const {id, created_at, message, user_id } = comment;
+            const {formattedDate, formattedTime} = formatTimestamp(created_at);
             return (
-              <div key={id} className='col-span-3'>
-                <h6 className='font-bold text-accentOrange text-lg'>{user_id} said:</h6>
-                <p className='p-2 border-b-thin border-l-thin border-r-thin border-black rounded-bl-sm'>{message}</p>
-                <span>@{created_at}</span>
+              <div key={id} className=' col-span-3 flex flex-col '>
+                <h6 className='font-bold text-accentOrange text-sm'>{user_id} said:</h6>
+                <p className='comment relative z-10 text-lg bg-white rounded-bl-sm'>{message}</p>
+                <span className='text-xs'>{formattedDate} @{formattedTime}</span>
               </div>
             )
           })}
