@@ -6,20 +6,12 @@ import Wifey from '../resources/wifey.jpg'
 import KidOne from '../resources/kid-one.jpg'
 import KidTwo from '../resources/kid-two.jpg'
 import Bday from '../resources/muhbday.jpeg'
-import ReactIcon from '../resources/React-icon.svg';
-import SvelteIcon from '../resources/svelte-icon.svg';
 
 import { useState } from 'react'
 import Footer from '@/components/footer/footer.component'
 
 
 export default function Home() {
-
-  const [modalOpen, setModalOpen] = useState(false);
-
-  function toggleModal() {
-    setModalOpen(!modalOpen);
-  }
 
   return (
     <main className='w-full max-w-cutoff flex flex-col items-center justify-center'>
@@ -30,17 +22,6 @@ export default function Home() {
         <a className='text-accentOrange' href="/">home</a>
         <a href="/works">works</a>
         <a href="/contact">contact</a>
-        
-        {/* framework switch  */}
-        {/* still haven't decided on whether I like this */}
-        {/* <a href="https://jpaulsisson-svelte.netlify.app/" className="p-0 h-[25px] w-28 absolute inset-0 flex items-center justify-center bg-primaryBg rounded-full border-thin border-primaryFont">
-          <div className="h-full w-full">
-            <Image src={SvelteIcon} alt="svelte icon" className="dampen w-full h-full brightness-[30%] rounded-full "/>
-          </div>
-          <div className="h-full w-full">
-            <Image src={ReactIcon} alt="react icon" className="w-full h-full bg-gray-600 rounded-full border-thin border-accentGreen"/>
-          </div>
-        </a> */}
       </nav>
 
       {/* intro text */}
