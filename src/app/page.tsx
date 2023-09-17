@@ -31,19 +31,17 @@ export default function Home() {
     fetchComments();
   }, [])
 
-  // useEffect(() => {
-  //   const getUser = async() => {
-  //     const 
-  //   }
-  // })
+  useEffect(() => {
+    const getUser = async() => {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (user) console.log(user);
+    }
 
-  const [comments, setComments] = useState<any[]>([]);
-  const [comments, setComments] = useState<any[]>([]);
-  const [modalOpen, setModalOpen] = useState(false);
+    getUser();
+  }, [])
 
-  function toggleModal() {
-    setModalOpen(!modalOpen);
-  }
+  const [currentUser, setCurrentUser] = useState<any[]>([])
+  const [comments, setComments] = useState<any[]>([]);
 
   function formatTimestamp(timestamp: string) {
     const date = new Date(timestamp);
@@ -76,7 +74,7 @@ export default function Home() {
 
       {/* photo grid */}
       
-      <section className='photo-grid w-4/5 mb-10 grid items-center justify-center grid-cols-12 grid-rows-5 rounded-xl'>
+      <section className='photo-grid w-4/5 mb-10 grid items-center justify-center grid-cols-12 grid-rows-5 rounded-md'>
         <div className=" col-start-2 col-span-6 row-start-1 row-span-3">
           <Image className='rounded-sm' src={Wifey} alt='my hot wife' />
         </div>
@@ -93,8 +91,8 @@ export default function Home() {
 
       {/* leave a message */}
 
-      <section className='w-3/4 my-10 border-thin border-accentGreen rounded-2xl p-2'>
-        <div className='p-4 bg-primaryFont rounded-xl text-primaryBg'>
+      <section className='w-3/4 my-10 border-thin border-accentGreen rounded-sm p-1'>
+        <div className='p-4 bg-primaryFont rounded-sm text-primaryBg'>
           <h3 className='text-3xl text-right font-medium text-accentBlue'>Leave me a message</h3>
           <div className="comments-wrapper grid grid-cols-4 gap-4">
             {comments.map((comment) => {
@@ -103,8 +101,8 @@ export default function Home() {
             return (
               <div key={id} className=' col-span-3 flex flex-col '>
                 <h6 className='font-bold text-accentOrange text-sm'>{user_id} said:</h6>
-                <p className='comment relative z-10 text-lg bg-white rounded-bl-sm'>{message}</p>
-                <span className='text-xs'>{formattedDate} @{formattedTime}</span>
+                <p className='comment relative z-10 text-lg'>{message}</p>
+                <span className='text-xs p-1'>{formattedDate} @{formattedTime}</span>
               </div>
             )
           })}
