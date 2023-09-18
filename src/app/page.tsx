@@ -6,23 +6,24 @@ import Wifey from '../resources/wifey.jpg'
 import KidOne from '../resources/kid-one.jpg'
 import KidTwo from '../resources/kid-two.jpg'
 import Bday from '../resources/muhbday.jpeg'
+import GoogleIcon from '../resources/google.svg'
+import { FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa'
 import { supabase } from '../app/utils/supabase.js'
-
+import { signInWithThirdParty } from '../app/utils/sign-in'
 import { useState, useEffect } from 'react'
 import Footer from '@/components/footer/footer.component'
-
+import LogOut from '@/components/log-out/log-out.component'
 
 export default function Home() {
 
   useEffect(() => {
     const fetchComments = async() => {
-      const { data: messages, error } = await supabase.from('messages').select('*').order('id', {ascending: false})
+      const { data: messages, error } = await supabase.from('messages').select('*').order('id', {ascending: false}).range(0, 4)
 
       if (error){
         console.log('error', error)
       } else {
         if (messages) {
-          console.log(messages);
         setComments(messages);
         }
       } 
@@ -33,14 +34,42 @@ export default function Home() {
 
   useEffect(() => {
     const getUser = async() => {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (user) console.log(user);
+        const loginStatus = localStorage.getItem('isLoggedIn');
+        if (loginStatus === 'true') {
+          const username = localStorage.getItem('username');
+          const user_id = localStorage.getItem('user_id');
+          if (username) setCurrentUsername(username);
+          if (user_id) setCurrentUserId(user_id);
+        } 
+        if (!loginStatus) {
+          localStorage.setItem('isLoggedIn', 'false');
+        } 
+        const { data: { user } } = await supabase.auth.getUser()
+        if (user) {
+          const user_id = user.id;
+          localStorage.setItem('user_id', user_id);
+          localStorage.setItem('isLoggedIn', 'true');
+          setCurrentUserId(user_id);
+        }
+        if (user?.identities) {
+          if (user.identities.length > 0) {
+            if (user.identities[0].identity_data) {
+              const username = user.identities[0].identity_data.name;
+              setCurrentUsername(username);
+            }
+          }
+        }
     }
 
     getUser();
   }, [])
+  
+  const loginStatus = localStorage.getItem('isLoggedIn');
 
-  const [currentUser, setCurrentUser] = useState<any[]>([])
+  const [currentUsername, setCurrentUsername] = useState('')
+  const [currentUserId, setCurrentUserId] = useState('')
+  const [userComment, setUserComment] = useState('')
+
   const [comments, setComments] = useState<any[]>([]);
 
   function formatTimestamp(timestamp: string) {
@@ -54,9 +83,27 @@ export default function Home() {
     };
   }
 
-  return (
-    <main className='w-full max-w-cutoff flex flex-col items-center justify-center'>
+  async function addUserComment(userComment: string) {
+    const message = userComment.trim();
+    if (message.length) {
+      const { data, error } = await supabase
+    .from('messages')
+    .insert([
+      { name: currentUsername, user_id: currentUserId, message: message },
+    ])
+    .select()
+    .single()
+    }
+    setComments((prev) => [...prev, {id: `${currentUsername}${Math.random() * 1234567890}`, name: currentUsername, user_id: currentUserId, message: message, created_at: new Date() }]);
+    setUserComment('');
+  }
 
+  return (
+    <main className='w-full max-w-cutoff flex flex-col items-center justify-center relative'>
+      
+      {loginStatus === 'true' &&
+      <LogOut />}
+      
       {/* nav bar */}
 
       <nav className='py-10 relative w-1/2 flex items-center justify-evenly gap-4 text-2xl md:text-4xl'>
@@ -91,26 +138,54 @@ export default function Home() {
 
       {/* leave a message */}
 
-      <section className='w-3/4 my-10 border-thin border-accentGreen rounded-sm p-1'>
-        <div className='p-4 bg-primaryFont rounded-sm text-primaryBg'>
-          <h3 className='text-3xl text-right font-medium text-accentBlue'>Leave me a message</h3>
-          <div className="comments-wrapper grid grid-cols-4 gap-4">
+      <section className='w-3/4 my-10'>
+        <fieldset className='p-4 bg-primaryBg rounded-sm text-primaryFont border-thin border-accentGreen'>
+            <legend className='text-xl md:text-3xl text-right font-medium text-accentBlue p-2'>
+            {loginStatus === 'false' ?
+              `sign in, leave a message`
+              :
+              ` leave a message `}
+            </legend>
+            {loginStatus === 'false' &&
+              <div className='flex w-1/2 md:w-1/4 ml-auto gap-x-2'>
+                <button onClick={() => signInWithThirdParty('google')} className='w-1/3 aspect-square border-thin border-primaryFont rounded-full bg-primaryFont'>
+                  <Image src={GoogleIcon} alt='google logo' />
+                </button>
+                <button onClick={() => signInWithThirdParty('github')} className='w-1/3 aspect-square rounded-full'>
+                  <FaGithub className='w-full h-full items-center' fill={`var(--primaryFont)`}  />
+                </button>
+                <button onClick={() => signInWithThirdParty('facebook')} className='w-1/3 aspect-square rounded-full'>
+                  <FaFacebook className='w-full h-full items-center' stroke='var(--primaryFont)' strokeWidth={15} fill='var(--accentBlue)' />
+                </button>
+                {/* <button onClick={() => signInWithThirdParty('linkedin')} className='w-1/3 aspect-square rounded-full'>
+                  <FaLinkedin className='w-full h-full items-center' stroke='var(--primaryFont)' strokeWidth={10} fill='var(--accentBlue)' />
+                </button> */}
+              </div>}
+          <div id='messages' className="comments-wrapper grid grid-cols-4 gap-4">
             {comments.map((comment) => {
-            const {id, created_at, message, user_id } = comment;
+            const {id, created_at, message, name } = comment;
             const {formattedDate, formattedTime} = formatTimestamp(created_at);
             return (
               <div key={id} className=' col-span-3 flex flex-col '>
-                <h6 className='font-bold text-accentOrange text-sm'>{user_id} said:</h6>
+                <h6 className='font-bold text-accentOrange text-sm'>{name} said:</h6>
                 <p className='comment relative z-10 text-lg'>{message}</p>
-                <span className='text-xs p-1'>{formattedDate} @{formattedTime}</span>
+                <span className='text-xs p-1'>{formattedDate} {formattedTime}</span>
               </div>
             )
           })}
           </div>
-        </div>
-      </section>
+          
+        </fieldset>
+        {loginStatus === 'true' &&
+          <form onSubmit={(e) => {
+            e.preventDefault()
+            addUserComment(userComment)}}
+            className='w-full p-4 flex items-center justify-center gap-4'>
+            <input value={userComment} onChange={(e) => setUserComment(e.target.value)} className='w-3/4 bg-primaryFont outline-accentGreen placeholder:text-primaryBg placeholder:text-sm placeholder:p-1 text-primaryBg' type="text" placeholder='your message...' />
+            <button type='submit' className='border-thin border-accentOrange rounded-sm px-2' >Send</button>
+          </form> }
 
-        
+      </section>
 
       {/* footer */}
 
