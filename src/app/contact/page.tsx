@@ -6,12 +6,14 @@ import Phone from '../../resources/phone.svg'
 import LinkedIn from '../../resources/linkedin.svg'
 import GitHub from '../../resources/github.svg'
 import { useState, useEffect } from 'react'
+import LogOut from '@/components/log-out/log-out.component'
 import StyledModal from '@/components/styled-modal/styled-modal.component'
 
 function Contact() {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [active, setActive] = useState(false);
+  const loginStatus = localStorage.getItem('isLoggedIn');
 
   useEffect(() => {
     setActive(modalOpen);
@@ -22,7 +24,10 @@ function Contact() {
   }
 
   return (
-    <main className="w-full min-h-screen max-w-cutoff flex flex-col items-center">
+    <main className="w-full min-h-screen max-w-cutoff flex flex-col items-center relative">
+
+      {loginStatus === 'true' &&
+        <LogOut />}
       
       {/* nav bar */}
 
