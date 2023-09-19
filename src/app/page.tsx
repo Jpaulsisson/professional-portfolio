@@ -168,7 +168,7 @@ export default function Home() {
             e.preventDefault()
             addUserComment(userComment)}}
             className='w-full p-4 flex items-center justify-center gap-4'>
-            <input value={userComment} onChange={(e) => setUserComment(e.target.value)} className='w-3/4 bg-primaryFont outline-accentGreen placeholder:text-primaryBg placeholder:text-sm placeholder:p-1 text-primaryBg' type="text" placeholder='your message...' />
+            <input value={userComment} onChange={(e) => setUserComment(e.target.value)} className='w-3/4 bg-primaryFont p-2 outline-accentGreen text-lg font-normal placeholder:text-primaryBg placeholder:p-1 text-primaryBg' type="text" placeholder='your message...' />
             <button type='submit' className='border-thin border-accentOrange rounded-sm px-2' >Send</button>
           </form> }
 
