@@ -18,7 +18,7 @@ import ReactIcon from '../../resources/React-icon.svg'
 import SassIcon from '../../resources/Sass-icon.svg'
 import GitIcon from '../../resources/Git-icon.svg'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Footer from '@/components/footer/footer.component';
 
@@ -39,10 +39,15 @@ type Skill = {
 
 function Works() {
 
+  useEffect(() => {
+    const loginStatus = localStorage.getItem('isLoggedIn');
+    if( loginStatus !== null) setLoginStatus(loginStatus);
+  }, [])
+
   const [openRecent, setOpenRecent] = useState('h-0');
   const [openCurrent, setOpenCurrent] = useState('h-0');
   const [currentSlide, setCurrentSlide] = useState(0);
-  const loginStatus = localStorage.getItem('isLoggedIn')
+  const [loginStatus, setLoginStatus] = useState('')
 
   const skills:Skill[] = [
     {

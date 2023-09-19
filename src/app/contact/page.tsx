@@ -10,10 +10,16 @@ import LogOut from '@/components/log-out/log-out.component'
 import StyledModal from '@/components/styled-modal/styled-modal.component'
 
 function Contact() {
+  
+  useEffect(() => {
+    const loginStatus = localStorage.getItem('isLoggedIn');
+    if( loginStatus !== null) setLoginStatus(loginStatus);
+  }, [])
 
   const [modalOpen, setModalOpen] = useState(false);
   const [active, setActive] = useState(false);
-  const loginStatus = localStorage.getItem('isLoggedIn');
+  const [loginStatus, setLoginStatus] = useState('')
+
 
   useEffect(() => {
     setActive(modalOpen);
