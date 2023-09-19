@@ -64,12 +64,18 @@ export default function Home() {
     getUser();
   }, [])
   
-  const loginStatus = localStorage.getItem('isLoggedIn');
+  useEffect(() => {
+    const loginStatus = localStorage.getItem('isLoggedIn');
+    if( loginStatus !== null) setLoginStatus(loginStatus);
+  }, [])
+
+    
+
 
   const [currentUsername, setCurrentUsername] = useState('')
   const [currentUserId, setCurrentUserId] = useState('')
   const [userComment, setUserComment] = useState('')
-
+  const [loginStatus, setLoginStatus] = useState('')
   const [comments, setComments] = useState<any[]>([]);
 
   function formatTimestamp(timestamp: string) {

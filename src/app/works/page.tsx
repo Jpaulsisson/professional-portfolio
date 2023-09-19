@@ -101,7 +101,10 @@ function Works() {
       name: 'ExpressJS',
       color: 'text-slate-300',
     },
-
+    {
+      name: 'Supabase',
+      color: 'text-emerald-400',
+    },
   ]
 
   const projects:Project[] = [
