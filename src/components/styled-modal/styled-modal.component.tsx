@@ -1,5 +1,7 @@
 import './styled-modal.styles.css'
 import Modal from 'react-modal'
+import { useUserContext } from '@/contexts/user.context'
+import { appendFile } from 'fs';
 
 
 type ModalProps = {
@@ -9,11 +11,14 @@ type ModalProps = {
 }
 
 function StyledModal({ modalOpen, toggleModal, active }: ModalProps) {
-
+  
+  const { appElement } = useUserContext();
+  
   return (
     <Modal 
         isOpen={modalOpen}
         onRequestClose={toggleModal}
+        appElement={appElement}
         contentLabel='pop-up with email address and phone number'
         closeTimeoutMS={400}
         className={`modal-works ${active} h-2/3 w-full bg-primaryBg border-solid border-4 border-accentBlue flex flex-col items-center justify-evenly`}

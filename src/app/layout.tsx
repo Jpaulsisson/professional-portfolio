@@ -2,6 +2,8 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Josefin_Sans } from 'next/font/google'
+import UserContextProvider from "@/contexts/user.context"
+import LogInOrOut from '@/components/log-in-out/log-in-out.component'
 
 
 const josefin = Josefin_Sans({ 
@@ -21,8 +23,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`bg-primaryBg font-thin text-primaryFont flex flex-col items-center justify-center ${josefin.className}`}>
-        {children}
+      <body id='app' className={`bg-primaryBg font-thin text-primaryFont flex flex-col items-center justify-center ${josefin.className}`}>
+        <UserContextProvider>
+          <LogInOrOut />
+          {children}
+        </UserContextProvider>
         </body>
     </html>
   )

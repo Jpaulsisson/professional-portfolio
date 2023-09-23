@@ -3,7 +3,7 @@
 import './works.css';
 
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
-import LogOut from '@/components/log-out/log-out.component';
+import LogOut from '@/components/log-in-out/log-in-out.component';
 import Image, { StaticImageData } from 'next/image'
 import CirclePainter  from '../../resources/circle-painter.png'
 import Blackjack  from '../../resources/blackjack.png'
@@ -42,7 +42,7 @@ function Works() {
   const [openRecent, setOpenRecent] = useState('h-0');
   const [openCurrent, setOpenCurrent] = useState('h-0');
   const [currentSlide, setCurrentSlide] = useState(0);
-  const loginStatus = localStorage.getItem('isLoggedIn')
+
 
   const skills:Skill[] = [
     {
@@ -167,8 +167,8 @@ function Works() {
   return (
     <main className='w-full max-w-cutoff flex flex-col items-center justify-center relative'>
 
-      {loginStatus === 'true' &&
-        <LogOut />}
+      {/* {loginStatus === 'true' &&
+        <LogOut />} */}
 
       {/* nav bar */}
 
