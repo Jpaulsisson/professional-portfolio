@@ -12,7 +12,6 @@ import { supabase } from '../app/utils/supabase.js'
 import { signInWithThirdParty } from '../app/utils/sign-in'
 import { useState, useEffect, useContext } from 'react'
 import Footer from '@/components/footer/footer.component'
-import LogInOut from '@/components/log-in-out/log-in-out.component'
 import { useUserContext } from '@/contexts/user.context'
 
 export default function Home() {
@@ -77,24 +76,6 @@ export default function Home() {
 
   return (
     <main className='w-full max-w-cutoff flex flex-col items-center justify-center relative'>
-      
-      <LogInOut />
-      
-      {/* nav bar */}
-
-      <nav className='py-10 relative w-1/2 flex items-center justify-evenly gap-4 text-2xl md:text-4xl'>
-        <a className='text-accentOrange' href="/">home</a>
-        <a href="/works">works</a>
-        <a href="/contact">contact</a>
-      </nav>
-
-      {/* intro text */}
-
-      {/* DELETE THIS BUTTON */}
-      <button onClick={() => signInUser('google')}>Sign user in with Google</button> 
-      <button onClick={signOut}>Sign user out</button> 
-      <button onClick={() => console.log(currentSession)}>Log current user</button> 
-
 
       <section className='my-10 flex flex-col items-center justify-center gap-4 text-center'>
         <h1 className='flex items-center justify-center gap-2 tracking-wide text-3xl md:text-5xl'><Image src={Hello} alt='Hello sign' width={75}/> I&apos;m Paul,</h1>
@@ -139,9 +120,9 @@ export default function Home() {
                 <button onClick={() => signInWithThirdParty('facebook')} className='w-1/3 aspect-square rounded-full'>
                   <FaFacebook className='w-full h-full items-center' stroke='var(--primaryFont)' strokeWidth={15} fill='var(--accentBlue)' />
                 </button>
-                <button onClick={() => signInWithThirdParty('linkedin')} className='w-1/3 aspect-square rounded-full'>
+                {/* <button onClick={() => signInWithThirdParty('linkedin')} className='w-1/3 aspect-square rounded-full'>
                   <FaLinkedin className='w-full h-full items-center' stroke='var(--primaryFont)' strokeWidth={10} fill='var(--accentBlue)' />
-                </button>
+                </button> */}
               </div>}
           <div id='messages' className="comments-wrapper grid grid-cols-4 gap-4">
             {comments.map((comment) => {
@@ -158,14 +139,14 @@ export default function Home() {
           </div>
           
         </fieldset>
-        {/* {loginStatus === 'true' &&
+        {currentSession &&
           <form onSubmit={(e) => {
             e.preventDefault()
             addUserComment(userComment)}}
             className='w-full p-4 flex items-center justify-center gap-4'>
             <input value={userComment} onChange={(e) => setUserComment(e.target.value)} className='w-3/4 bg-primaryFont outline-accentGreen placeholder:text-primaryBg placeholder:text-sm placeholder:p-1 text-primaryBg' type="text" placeholder='your message...' />
             <button type='submit' className='border-thin border-accentOrange rounded-sm px-2' >Send</button>
-          </form> } */}
+          </form> }
 
       </section>
 

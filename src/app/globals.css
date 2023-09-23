@@ -68,3 +68,7 @@ img {
 .login {
   transition: transform 500ms;
 }
+
+a[data-active = true] {
+  color: var(--accentOrange);
+}

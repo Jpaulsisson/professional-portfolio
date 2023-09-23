@@ -7,6 +7,8 @@ import Image from 'next/image';
 import GoogleIcon from '@/resources/google.svg';
 import { FaGithub, FaFacebook } from 'react-icons/fa';
 import ReactModal from 'react-modal';
+import { signInWithThirdParty } from '@/app/utils/sign-in'
+
 
 export default function LogInOrOut() {
 
@@ -32,7 +34,6 @@ export default function LogInOrOut() {
         isOpen={modalOpen}
         onRequestClose={() => setModalOpen(false)}
         contentLabel='sign in options'
-        closeTimeoutMS={400}
         appElement={appElement}
         style={{
           content: {
@@ -45,7 +46,7 @@ export default function LogInOrOut() {
             alignItems: 'center',
             justifyItems: 'center',
             gap: '1rem',
-            padding: '0',
+            padding: '1rem',
           },
           overlay: {
             backgroundColor: 'rgba(0, 0, 0, 0.7)'
@@ -54,14 +55,14 @@ export default function LogInOrOut() {
         >
         <span className='text-2xl'>Choose a sign in option:</span>
         <div className='flex flex-col items-center justify-between w-full h-full'>
-          <button className='w-1/4 h-1/6 flex items-center justify-center'>
+          <button onClick={() => signInWithThirdParty('google')} className='w-1/4 h-1/6 flex items-center justify-center'>
             <Image src={GoogleIcon} alt='google sign in button' />
           </button>  
-          <button  className='w-1/4 h-1/6 flex items-center justify-center'>
+          <button onClick={() => signInWithThirdParty('github')} className='w-1/4 h-1/6 flex items-center justify-center'>
             <FaGithub className='w-full h-full' fill='var(--primaryFont)'/>  
           </button>
           <button className='w-1/4 h-1/6 flex items-center justify-center'>
-            <FaFacebook className='w-full h-full' stroke='var(--primaryFont)' strokeWidth={10} fill='var(--accentBlue)'/>
+            <FaFacebook onClick={() => signInWithThirdParty('facebook')} className='w-full h-full' stroke='var(--primaryFont)' strokeWidth={10} fill='var(--accentBlue)'/>
           </button>
           <button onClick={() => setModalOpen(prev => !prev)} className='w-full text-3xl p-2 text-accentOrange'><span className='text-primaryFont '>&#60;</span>/close<span className='text-primaryFont'>&#62;</span></button>
         </div>

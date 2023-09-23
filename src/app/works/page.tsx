@@ -101,7 +101,10 @@ function Works() {
       name: 'ExpressJS',
       color: 'text-slate-300',
     },
-
+    {
+      name: 'Supabase',
+      color: 'text-emerald-400'
+    }
   ]
 
   const projects:Project[] = [
@@ -167,16 +170,13 @@ function Works() {
   return (
     <main className='w-full max-w-cutoff flex flex-col items-center justify-center relative'>
 
-      {/* {loginStatus === 'true' &&
-        <LogOut />} */}
-
       {/* nav bar */}
 
-      <nav className='py-10 w-1/2 flex items-center justify-evenly gap-4 text-2xl md:text-4xl'>
+      {/* <nav className='py-10 w-1/2 flex items-center justify-evenly gap-4 text-2xl md:text-4xl'>
         <a href="/">home</a>
         <a className='text-accentOrange' href="/works">works</a>
         <a href="/contact">contact</a>
-      </nav>
+      </nav> */}
 
       {/* skills */}
 
