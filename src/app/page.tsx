@@ -2,14 +2,17 @@
 
 import Image from 'next/image'
 import Hello from '../resources/hello-sign.png'
+import Wifey from '../resources/wifey.jpg'
+import KidOne from '../resources/kid-one.jpg'
+import KidTwo from '../resources/kid-two.jpg'
+import Bday from '../resources/muhbday.jpeg'
 import GoogleIcon from '../resources/google.svg'
 import { FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa'
 import { supabase } from '../app/utils/supabase.js'
 import { signInWithThirdParty } from '../app/utils/sign-in'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import Footer from '@/components/footer/footer.component'
-import LogOut from '@/components/log-out/log-out.component'
-import PhotoGrid from '@/components/photo-grid/photo-grid.component'
+import { useUserContext } from '@/contexts/user.context'
 
 export default function Home() {
 
@@ -29,48 +32,12 @@ export default function Home() {
     fetchComments();
   }, [])
 
-  useEffect(() => {
-    const getUser = async() => {
-        const loginStatus = localStorage.getItem('isLoggedIn');
-        if (loginStatus === 'true') {
-          const username = localStorage.getItem('username');
-          const user_id = localStorage.getItem('user_id');
-          if (username) setCurrentUsername(username);
-          if (user_id) setCurrentUserId(user_id);
-        } 
-        if (!loginStatus) {
-          localStorage.setItem('isLoggedIn', 'false');
-        } 
-        const { data: { user } } = await supabase.auth.getUser()
-        if (user) {
-          const user_id = user.id;
-          localStorage.setItem('user_id', user_id);
-          localStorage.setItem('isLoggedIn', 'true');
-          setCurrentUserId(user_id);
-        }
-        if (user?.identities) {
-          if (user.identities.length > 0) {
-            if (user.identities[0].identity_data) {
-              const username = user.identities[0].identity_data.name;
-              setCurrentUsername(username);
-            }
-          }
-        }
-    }
-
-    getUser();
-  }, [])
-  
-  useEffect(() => {
-    const loginStatus = localStorage.getItem('isLoggedIn');
-    if( loginStatus !== null) setLoginStatus(loginStatus);
-  }, [])
-
-  const [currentUsername, setCurrentUsername] = useState('')
-  const [currentUserId, setCurrentUserId] = useState('')
-  const [userComment, setUserComment] = useState('')
-  const [loginStatus, setLoginStatus] = useState('')
+  const [currentUsername, setCurrentUsername] = useState('');
+  const [currentUserId, setCurrentUserId] = useState('');
+  const [userComment, setUserComment] = useState('');
   const [comments, setComments] = useState<any[]>([]);
+  const { currentSession, setCurrentSession } = useUserContext();
+  
 
   function formatTimestamp(timestamp: string) {
     const date = new Date(timestamp);
@@ -100,19 +67,6 @@ export default function Home() {
 
   return (
     <main className='w-full max-w-cutoff flex flex-col items-center justify-center relative'>
-      
-      {loginStatus === 'true' &&
-      <LogOut />}
-      
-      {/* nav bar */}
-
-      <nav className='py-10 relative w-1/2 flex items-center justify-evenly gap-4 text-2xl md:text-4xl'>
-        <a className='text-accentOrange' href="/">home</a>
-        <a href="/works">works</a>
-        <a href="/contact">contact</a>
-      </nav>
-
-      {/* intro text */}
 
       <section className='my-10 flex flex-col items-center justify-center gap-4 text-center'>
         <h1 className='flex items-center justify-center gap-2 tracking-wide text-3xl md:text-5xl'><Image src={Hello} alt='Hello sign' width={75}/> I&apos;m Paul,</h1>
@@ -121,19 +75,32 @@ export default function Home() {
 
       {/* photo grid */}
       
-      <PhotoGrid />
+      <section className='photo-grid w-4/5 mb-10 grid items-center justify-center grid-cols-12 grid-rows-5 rounded-md'>
+        <div className=" col-start-2 col-span-6 row-start-1 row-span-3">
+          <Image className='rounded-sm' src={Wifey} alt='my hot wife' />
+        </div>
+        <div className=" col-start-9 col-span-3 row-start-1 row-span-3">
+          <Image className='rounded-sm' src={KidOne} alt='my son' />
+        </div>
+        <div className=' col-start-8 col-span-3 row-start-3 row-span-2' >
+          <Image className='rounded-sm' src={KidTwo} alt='my daughter' />
+        </div>
+        <div className=' col-start-3 col-span-4 row-start-3 row-span-3'>
+          <Image className='rounded-sm ' src={Bday} alt='my birthday' />
+        </div>      
+      </section>
 
       {/* leave a message */}
 
       <section className='w-3/4 my-10'>
         <fieldset className='p-4 bg-primaryBg rounded-sm text-primaryFont border-thin border-accentGreen'>
             <legend className='text-xl md:text-3xl text-right font-medium text-accentBlue p-2'>
-            {loginStatus === 'false' ?
+            {!currentSession ?
               `sign in, leave a message`
               :
               ` leave a message `}
             </legend>
-            {loginStatus === 'false' &&
+            {!currentSession &&
               <div className='flex w-1/2 md:w-1/4 ml-auto gap-x-2'>
                 <button onClick={() => signInWithThirdParty('google')} className='w-1/3 aspect-square border-thin border-primaryFont rounded-full bg-primaryFont'>
                   <Image src={GoogleIcon} alt='google logo' />
@@ -163,12 +130,12 @@ export default function Home() {
           </div>
           
         </fieldset>
-        {loginStatus === 'true' &&
+        {currentSession &&
           <form onSubmit={(e) => {
             e.preventDefault()
             addUserComment(userComment)}}
             className='w-full p-4 flex items-center justify-center gap-4'>
-            <input value={userComment} onChange={(e) => setUserComment(e.target.value)} className='w-3/4 bg-primaryFont p-2 outline-accentGreen text-lg font-normal placeholder:text-primaryBg placeholder:p-1 text-primaryBg' type="text" placeholder='your message...' />
+            <input value={userComment} onChange={(e) => setUserComment(e.target.value)} className='w-3/4 bg-primaryFont outline-accentGreen placeholder:text-primaryBg placeholder:text-sm placeholder:p-1 text-primaryBg' type="text" placeholder='your message...' />
             <button type='submit' className='border-thin border-accentOrange rounded-sm px-2' >Send</button>
           </form> }
 

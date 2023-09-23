@@ -63,4 +63,15 @@ img {
   inset: 1px;
   z-index: -1;
   background-color: var(--primaryBg);
+<<<<<<< HEAD
+=======
+}
+
+.login {
+  transition: transform 500ms;
+}
+
+a[data-active = true] {
+  color: var(--accentOrange);
+>>>>>>> Supabase
 }

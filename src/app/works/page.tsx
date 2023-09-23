@@ -3,7 +3,8 @@
 import './works.css';
 
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
-import LogOut from '@/components/log-out/log-out.component';
+
+import LogOut from '@/components/log-in-out/log-in-out.component';
 import Image, { StaticImageData } from 'next/image'
 import CirclePainter  from '../../resources/circle-painter.png'
 import Blackjack  from '../../resources/blackjack.png'
@@ -39,15 +40,9 @@ type Skill = {
 
 function Works() {
 
-  useEffect(() => {
-    const loginStatus = localStorage.getItem('isLoggedIn');
-    if( loginStatus !== null) setLoginStatus(loginStatus);
-  }, [])
-
   const [openRecent, setOpenRecent] = useState('h-0');
   const [openCurrent, setOpenCurrent] = useState('h-0');
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [loginStatus, setLoginStatus] = useState('')
 
   const skills:Skill[] = [
     {
@@ -108,8 +103,8 @@ function Works() {
     },
     {
       name: 'Supabase',
-      color: 'text-emerald-400',
-    },
+      color: 'text-emerald-400'
+    }
   ]
 
   const projects:Project[] = [
@@ -174,17 +169,6 @@ function Works() {
 
   return (
     <main className='w-full max-w-cutoff flex flex-col items-center justify-center relative'>
-
-      {loginStatus === 'true' &&
-        <LogOut />}
-
-      {/* nav bar */}
-
-      <nav className='py-10 w-1/2 flex items-center justify-evenly gap-4 text-2xl md:text-4xl'>
-        <a href="/">home</a>
-        <a className='text-accentOrange' href="/works">works</a>
-        <a href="/contact">contact</a>
-      </nav>
 
       {/* skills */}
 

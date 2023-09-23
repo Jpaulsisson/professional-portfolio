@@ -6,7 +6,11 @@ import Phone from '../../resources/phone.svg'
 import LinkedIn from '../../resources/linkedin.svg'
 import GitHub from '../../resources/github.svg'
 import { useState, useEffect } from 'react'
+<<<<<<< HEAD
 import LogOut from '@/components/log-out/log-out.component'
+=======
+import LogOut from '@/components/log-in-out/log-in-out.component'
+>>>>>>> Supabase
 import StyledModal from '@/components/styled-modal/styled-modal.component'
 
 function Contact() {
@@ -21,6 +25,7 @@ function Contact() {
   const [loginStatus, setLoginStatus] = useState('')
 
 
+
   useEffect(() => {
     setActive(modalOpen);
   }, [modalOpen])
@@ -30,24 +35,19 @@ function Contact() {
   }
 
   return (
+<<<<<<< HEAD
     <main className="w-full min-h-screen max-w-cutoff flex flex-col items-center relative">
 
       {loginStatus === 'true' &&
         <LogOut />}
+=======
+    <main className="w-full h-[80vh] max-w-cutoff flex flex-col items-center justify-center relative">
+>>>>>>> Supabase
       
-      {/* nav bar */}
-
-      <nav className="py-10 w-1/2 flex items-center justify-evenly gap-4 text-2xl md:text-4xl md:mb-40">
-        <a href="/">home</a>
-        <a href="/works">works</a>
-        <a className="text-accentOrange" href="/contact">
-          contact
-        </a>
-      </nav>
-
       {/* contact info */}
 
       <section className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12">
+
         {/* modal */}
 
         <StyledModal
