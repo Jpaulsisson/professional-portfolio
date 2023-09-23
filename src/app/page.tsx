@@ -65,6 +65,11 @@ export default function Home() {
     setUserComment('');
   }
 
+  const signOut = async () => {
+    const response = await supabase.auth.signOut();
+    if (response) setCurrentSession(null);
+  }
+
   return (
     <main className='w-full max-w-cutoff flex flex-col items-center justify-center relative'>
 

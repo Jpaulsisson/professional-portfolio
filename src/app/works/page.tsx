@@ -3,7 +3,6 @@
 import './works.css';
 
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
-
 import LogOut from '@/components/log-in-out/log-in-out.component';
 import Image, { StaticImageData } from 'next/image'
 import CirclePainter  from '../../resources/circle-painter.png'
@@ -19,7 +18,7 @@ import ReactIcon from '../../resources/React-icon.svg'
 import SassIcon from '../../resources/Sass-icon.svg'
 import GitIcon from '../../resources/Git-icon.svg'
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import Footer from '@/components/footer/footer.component';
 
@@ -43,6 +42,7 @@ function Works() {
   const [openRecent, setOpenRecent] = useState('h-0');
   const [openCurrent, setOpenCurrent] = useState('h-0');
   const [currentSlide, setCurrentSlide] = useState(0);
+
 
   const skills:Skill[] = [
     {
@@ -169,6 +169,14 @@ function Works() {
 
   return (
     <main className='w-full max-w-cutoff flex flex-col items-center justify-center relative'>
+
+      {/* nav bar */}
+
+      {/* <nav className='py-10 w-1/2 flex items-center justify-evenly gap-4 text-2xl md:text-4xl'>
+        <a href="/">home</a>
+        <a className='text-accentOrange' href="/works">works</a>
+        <a href="/contact">contact</a>
+      </nav> */}
 
       {/* skills */}
 
