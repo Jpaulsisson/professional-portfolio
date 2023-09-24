@@ -65,8 +65,6 @@ export default function Home() {
   return (
     <main className='w-full max-w-cutoff flex flex-col items-center justify-center relative'>
 
-      <button onClick={() => console.log(currentUserId)}>log user info</button>
-
       <section className='my-10 flex flex-col items-center justify-center gap-4 text-center'>
         <h1 className='flex items-center justify-center gap-2 tracking-wide text-3xl md:text-5xl'><Image src={Hello} alt='Hello sign' width={75}/> I&apos;m Paul,</h1>
         <p className='w-3/5 text-lg tracking-wide md:text-2xl'>I&apos;m a frontend software engineer from Birmingham, AL. Let me save a few thousand words <sub className='text-accentGreen text-2xl md:text-4xl'>&#10549;</sub></p>
