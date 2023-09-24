@@ -119,7 +119,7 @@ export default function Home() {
             return (
               <div key={id} className=' col-span-3 flex flex-col '>
                 <h6 className='font-bold text-accentOrange text-sm'>{name} said:</h6>
-                <p className='comment relative z-10 text-lg'>{message}</p>
+                <p className='w-full h-full border-b-thin border-r-thin border-primaryFont rounded-sm text-lg mb-1'>{message}</p>
                 <span className='text-xs p-1'>{formattedDate} {formattedTime}</span>
               </div>
             )

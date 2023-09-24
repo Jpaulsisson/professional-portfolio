@@ -13,7 +13,6 @@ import { signInWithThirdParty } from '@/app/utils/sign-in'
 export default function LogInOrOut() {
 
   const [modalOpen, setModalOpen] = useState(false);
-  const [scale, setScale] = useState('0');
   const { currentSession, appElement } = useUserContext();
 
   const signOut = async () => {

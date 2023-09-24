@@ -15,6 +15,7 @@ type UserContext = {
   appElement: HTMLElement | undefined;
   currentUsername: string | null;
   currentUserId: string | null;
+  setPreferredTheme: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 const UserContext = createContext<UserContext | null>(null);
@@ -24,6 +25,7 @@ export default function UserContextProvider({ children }: UserContextProviderPro
   const [appElement, setAppElement] = useState<HTMLElement | undefined>(undefined);
   const [currentUsername, setcurrentUsername] = useState<string | null>(null);
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
+  const [preferredTheme, setPreferredTheme] = useState<string | null>(null);
 
   useEffect(() => {
     if (document) {
@@ -31,6 +33,24 @@ export default function UserContextProvider({ children }: UserContextProviderPro
       if (newAppElement) setAppElement(newAppElement);
     }
   }, [])
+
+  // useEffect(() => {
+  //   if (preferredTheme === 'dark') {
+  //     document.documentElement.style.setProperty('--primaryBg', 'hsl(240, 5.9%, 10%)');
+  //     document.documentElement.style.setProperty('--primaryFont', 'hsl(34deg, 78%, 91%)');
+  //     document.documentElement.style.setProperty('--accentOrange', 'hsl(15deg, 70%, 59%)');
+  //     document.documentElement.style.setProperty('--accentGreen', 'hsl(141,78.9%,85.1%)');
+  //     document.documentElement.style.setProperty('--accentBlue', 'hsl(217deg, 50%, 50%)');
+  //   };
+
+  //   if (preferredTheme === 'blue') {
+  //     document.documentElement.style.setProperty('--primaryBg', 'hsl(202, 63%, 18%)');
+  //     document.documentElement.style.setProperty('--primaryFont', 'hsl(34, 58%, 78%)');
+  //     document.documentElement.style.setProperty('--accentOrange', 'hsl(32, 67%, 40%)');
+  //     document.documentElement.style.setProperty('--accentGreen', 'hsl(134, 35%, 57%)');
+  //     document.documentElement.style.setProperty('--accentBlue', 'hsl(358, 43%, 66%)');
+  //   }
+  // })
 
   useEffect(() => {
       const unsubscribe = supabase.auth.onAuthStateChange((event, session) => {
@@ -57,7 +77,8 @@ export default function UserContextProvider({ children }: UserContextProviderPro
         setCurrentSession,
         appElement,
         currentUsername,
-        currentUserId
+        currentUserId,
+        setPreferredTheme
       }}
     >
       {children}

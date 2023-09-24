@@ -5,8 +5,6 @@ import { Josefin_Sans } from 'next/font/google'
 import UserContextProvider from "@/contexts/user.context"
 import Navbar from '@/components/navbar/navbar.component'
 
-
-
 const josefin = Josefin_Sans({ 
   subsets: ['latin'],
   weight: ['100', '300']
