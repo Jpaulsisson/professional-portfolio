@@ -225,7 +225,7 @@ function Works() {
                   <p className='text-xl md:text-2xl' >Tech stack:</p>
                   <div className='flex items-center justify-around gap-2 md:gap-6'>
                     {tags.map((tag, index) => {
-                      return <Image key={index} src={tag} alt={name} className=' w-10 md:w-[10%]'/>
+                      return <Image priority={true} key={index} src={tag} alt={name} className=' w-10 md:w-[10%]'/>
                     })}
                   </div>
                   <a className='flex justify-center items-center text-xl md:text-2xl' target="_blank" rel="noopener noreferrer" href={repo}><span className='text-accentGreen text-2xl' >&#60;</span>github repo<span className='text-accentGreen text-2xl'>&#62;</span>
