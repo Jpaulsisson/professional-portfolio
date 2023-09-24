@@ -2,6 +2,7 @@
 
 import { supabase } from '@/app/utils/supabase';
 import { authStateChangeListener } from '@/app/utils/supabase';
+import { Session, UserMetadata } from '@supabase/supabase-js';
 import React, { createContext, ReactNode, useContext, useState, useEffect } from 'react';
 
 type UserContextProviderProps = {
@@ -10,16 +11,19 @@ type UserContextProviderProps = {
 
 type UserContext = {
   currentSession: object | null;
-  setCurrentSession: React.Dispatch<React.SetStateAction<object | null>>;
+  setCurrentSession: React.Dispatch<React.SetStateAction<Session | null>>;
   appElement: HTMLElement | undefined;
+  currentUsername: string | null;
+  currentUserId: string | null;
 }
-
 
 const UserContext = createContext<UserContext | null>(null);
 
 export default function UserContextProvider({ children }: UserContextProviderProps) {
-  const [currentSession, setCurrentSession] = useState<object | null>(null);
+  const [currentSession, setCurrentSession] = useState<Session | null>(null);
   const [appElement, setAppElement] = useState<HTMLElement | undefined>(undefined);
+  const [currentUsername, setcurrentUsername] = useState<string | null>(null);
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
 
   useEffect(() => {
     if (document) {
@@ -39,6 +43,12 @@ export default function UserContextProvider({ children }: UserContextProviderPro
       });
   }, [])
   
+  useEffect(() => {
+    if (currentSession !== null) {
+      setcurrentUsername(currentSession.user.user_metadata.name);
+      setCurrentUserId(currentSession.user.id);
+    }
+  }, [currentSession])
 
   return (
     <UserContext.Provider
@@ -46,6 +56,8 @@ export default function UserContextProvider({ children }: UserContextProviderPro
         currentSession,
         setCurrentSession,
         appElement,
+        currentUsername,
+        currentUserId
       }}
     >
       {children}

@@ -10,7 +10,7 @@ import GoogleIcon from '../resources/google.svg'
 import { FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa'
 import { supabase } from '../app/utils/supabase.js'
 import { signInWithThirdParty } from '../app/utils/sign-in'
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect } from 'react'
 import Footer from '@/components/footer/footer.component'
 import { useUserContext } from '@/contexts/user.context'
 
@@ -32,12 +32,9 @@ export default function Home() {
     fetchComments();
   }, [])
 
-  const [currentUsername, setCurrentUsername] = useState('');
-  const [currentUserId, setCurrentUserId] = useState('');
   const [userComment, setUserComment] = useState('');
   const [comments, setComments] = useState<any[]>([]);
-  const { currentSession, setCurrentSession } = useUserContext();
-  
+  const { currentSession, currentUsername, currentUserId } = useUserContext();
 
   function formatTimestamp(timestamp: string) {
     const date = new Date(timestamp);
@@ -65,13 +62,10 @@ export default function Home() {
     setUserComment('');
   }
 
-  const signOut = async () => {
-    const response = await supabase.auth.signOut();
-    if (response) setCurrentSession(null);
-  }
-
   return (
     <main className='w-full max-w-cutoff flex flex-col items-center justify-center relative'>
+
+      <button onClick={() => console.log(currentUserId)}>log user info</button>
 
       <section className='my-10 flex flex-col items-center justify-center gap-4 text-center'>
         <h1 className='flex items-center justify-center gap-2 tracking-wide text-3xl md:text-5xl'><Image src={Hello} alt='Hello sign' width={75}/> I&apos;m Paul,</h1>
@@ -140,7 +134,7 @@ export default function Home() {
             e.preventDefault()
             addUserComment(userComment)}}
             className='w-full p-4 flex items-center justify-center gap-4'>
-            <input value={userComment} onChange={(e) => setUserComment(e.target.value)} className='w-3/4 bg-primaryFont outline-accentGreen placeholder:text-primaryBg placeholder:text-sm placeholder:p-1 text-primaryBg' type="text" placeholder='your message...' />
+            <input value={userComment} onChange={(e) => setUserComment(e.target.value)} className='w-3/4 bg-primaryFont outline-accentGreen font-normal rounded-sm placeholder:text-primaryBg placeholder:text-md placeholder:p-1 text-primaryBg' type="text" placeholder='your message...' />
             <button type='submit' className='border-thin border-accentOrange rounded-sm px-2' >Send</button>
           </form> }
 

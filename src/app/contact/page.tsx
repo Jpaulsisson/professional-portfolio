@@ -6,25 +6,12 @@ import Phone from '../../resources/phone.svg'
 import LinkedIn from '../../resources/linkedin.svg'
 import GitHub from '../../resources/github.svg'
 import { useState, useEffect } from 'react'
-<<<<<<< HEAD
-import LogOut from '@/components/log-out/log-out.component'
-=======
-import LogOut from '@/components/log-in-out/log-in-out.component'
->>>>>>> Supabase
 import StyledModal from '@/components/styled-modal/styled-modal.component'
 
 function Contact() {
-  
-  useEffect(() => {
-    const loginStatus = localStorage.getItem('isLoggedIn');
-    if( loginStatus !== null) setLoginStatus(loginStatus);
-  }, [])
 
   const [modalOpen, setModalOpen] = useState(false);
   const [active, setActive] = useState(false);
-  const [loginStatus, setLoginStatus] = useState('')
-
-
 
   useEffect(() => {
     setActive(modalOpen);
@@ -35,14 +22,7 @@ function Contact() {
   }
 
   return (
-<<<<<<< HEAD
-    <main className="w-full min-h-screen max-w-cutoff flex flex-col items-center relative">
-
-      {loginStatus === 'true' &&
-        <LogOut />}
-=======
     <main className="w-full h-[80vh] max-w-cutoff flex flex-col items-center justify-center relative">
->>>>>>> Supabase
       
       {/* contact info */}
 
