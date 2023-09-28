@@ -2,181 +2,38 @@
 
 import './works.css';
 
+import Image from 'next/image';
+import Link from 'next/link';
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
-import LogOut from '@/components/log-in-out/log-in-out.component';
-import Image, { StaticImageData } from 'next/image'
-import CirclePainter  from '../../resources/circle-painter.png'
-import Blackjack  from '../../resources/blackjack.png'
-import AgeCalc  from '../../resources/age-calc.png'
-import Counter  from '../../resources/counter.png'
-import Retrofolio from '../../resources/retrofolio.png'
-import Travel from '../../resources/travel.jpeg'
-import HTMLIcon from '../../resources/HTML-icon.svg'
-import CSSIcon from '../../resources/CSS-icon.svg'
-import JSIcon from '../../resources/JS-icon.svg'
-import ReactIcon from '../../resources/React-icon.svg'
-import SassIcon from '../../resources/Sass-icon.svg'
-import GitIcon from '../../resources/Git-icon.svg'
-
+import Travel from '@/resources/travel.jpeg';
+import { projects, skills, current } from './works.info';
 import { useState } from 'react';
-
 import Footer from '@/components/footer/footer.component';
 
-
-type Project = {
-  name: string,
-  href: string,
-  img: StaticImageData,
-  tags: StaticImageData[],
-  repo: string,
-  status?: string
-}
-
-type Skill = {
-  name: string,
-  color: string,
-}
-
-function Works() {
+export default function Works() {
 
   const [openRecent, setOpenRecent] = useState('h-0');
   const [openCurrent, setOpenCurrent] = useState('h-0');
   const [currentSlide, setCurrentSlide] = useState(0);
 
-
-  const skills:Skill[] = [
-    {
-      name: 'HTML',
-      color: 'text-accentOrange',
-    },
-    {
-      name: 'CSS',
-      color: 'text-accentBlue',
-    },
-    {
-      name: 'JavaScript',
-      color: 'text-yellow-300',
-    },
-    {
-      name: 'React',
-      color: 'text-blue-300',
-    },
-    {
-      name: 'Sass',
-      color: 'text-pink-500',
-    },
-    {
-      name: 'TypeScript',
-      color: 'text-accentBlue',
-    },
-    {
-      name: 'Tailwind',
-      color: 'text-accentGreen',
-    },
-    {
-      name: 'Git',
-      color: 'text-accentOrange',
-    },
-    {
-      name: 'Bootstrap',
-      color: 'text-purple-500',
-    },
-    {
-      name: 'Svelte',
-      color: 'text-red-400',
-    },
-    {
-      name: 'SQL',
-      color: 'text-amber-200',
-    },
-    {
-      name: 'PostgreSQL',
-      color: 'text-sky-600',
-    },
-    {
-      name: 'NodeJS',
-      color: 'text-lime-600',
-    },
-    {
-      name: 'ExpressJS',
-      color: 'text-slate-300',
-    },
-    {
-      name: 'Supabase',
-      color: 'text-emerald-400'
-    }
-  ]
-
-  const projects:Project[] = [
-    {
-      name: 'Retrofolio',
-      href: 'https://jpaulsisson.netlify.app/',
-      img: Retrofolio,
-      tags: [HTMLIcon, SassIcon, JSIcon, ReactIcon, GitIcon],
-      repo: 'https://github.com/Jpaulsisson/portfolio-site'
-    },
-    {
-      name: 'Circle Painter',
-      href: 'https://circle-paint.netlify.app/',
-      img: CirclePainter,
-      tags: [HTMLIcon, CSSIcon, JSIcon, ReactIcon, GitIcon],
-      repo: 'https://github.com/Jpaulsisson/circle-generator-app',
-    },
-    {
-      name: 'Blackjack',
-      href: 'https://jpaulsisson-blackjack.netlify.app/',
-      img: Blackjack,
-      tags: [HTMLIcon, CSSIcon, JSIcon, ReactIcon, GitIcon],
-      repo: 'https://github.com/Jpaulsisson/blackjack',
-    },
-    {
-      name: 'Age Calculator',
-      href: 'https://calculate-age-fem.netlify.app',
-      img: AgeCalc,
-      tags: [HTMLIcon, SassIcon, JSIcon, GitIcon],
-      repo: 'https://github.com/Jpaulsisson/age-calculator-app',
-    },
-    {
-      name: 'Customizable Counter',
-      href: 'https://customizable-counter.netlify.app',
-      img: Counter,
-      tags: [HTMLIcon, CSSIcon, JSIcon, ReactIcon, GitIcon],
-      repo: 'https://github.com/Jpaulsisson/wds-react-hooks-course/tree/main',
-    },
-  ]
-
-  const current:Project = {
-      name: 'Travel Planner',
-      href: '#',
-      img: Travel,
-      tags: [HTMLIcon, SassIcon, JSIcon, ReactIcon, GitIcon],
-      repo: '#',
-      status: 'Gathering API keys and wireframing'
-    };
-
   function handleToggleRecent() {
     openRecent === 'h-full' ? setOpenRecent('h-0') : setOpenRecent('h-full');
   }
+
   function handleToggleCurrent() {
     openCurrent === 'h-full' ? setOpenCurrent('h-0') : setOpenCurrent('h-full');
   }
+
   function handlePrev() {
     currentSlide === 0 ? setCurrentSlide(projects.length - 1) : setCurrentSlide((currentSlide) => currentSlide -= 1);
   }
+
   function handleNext() {
     currentSlide === projects.length - 1 ? setCurrentSlide(0) : setCurrentSlide((currentSlide) => currentSlide += 1);
   }
 
   return (
     <main className='w-full max-w-cutoff flex flex-col items-center justify-center relative'>
-
-      {/* nav bar */}
-
-      {/* <nav className='py-10 w-1/2 flex items-center justify-evenly gap-4 text-2xl md:text-4xl'>
-        <a href="/">home</a>
-        <a className='text-accentOrange' href="/works">works</a>
-        <a href="/contact">contact</a>
-      </nav> */}
 
       {/* skills */}
 
@@ -215,7 +72,7 @@ function Works() {
             {projects.map(({name, href, img, tags, repo }, index) => {
               return (
               <li key={index} className={`car-slide ${currentSlide === index ? 'opacity-100' : 'opacity-0'} absolute inset-0 transition-opacity-[5000ms]`}>
-                <a href={href} aria-label={name + ' live site'} rel="noopener noreferrer" target="_blank" className="absolute z-40 bg-transparent w-8/12 h-3/4 inset-0 m-auto"> </a>
+                <Link href={href} aria-label={name + ' live site'} rel="noopener noreferrer" target="_blank" className="absolute z-40 bg-transparent w-8/12 h-3/4 inset-0 m-auto"> </Link>
                 <Image src={img} alt={name} className="rounded-md" />
                 
                 {/* more info content */}
@@ -292,5 +149,3 @@ function Works() {
     </main>
   )
 }
-
-export default Works

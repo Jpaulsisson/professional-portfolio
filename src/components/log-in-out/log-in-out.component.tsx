@@ -2,12 +2,12 @@
 
 import React, { useState } from 'react'
 import { useUserContext } from '@/contexts/user.context';
-import { supabase } from '@/app/utils/supabase'
+import { supabase } from '@/utils/supabase'
 import Image from 'next/image';
 import GoogleIcon from '@/resources/google.svg';
 import { FaGithub, FaFacebook } from 'react-icons/fa';
 import ReactModal from 'react-modal';
-import { signInWithThirdParty } from '@/app/utils/sign-in'
+import { signInWithThirdParty } from '@/utils/sign-in-helper'
 
 
 export default function LogInOrOut() {

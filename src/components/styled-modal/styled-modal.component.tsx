@@ -1,7 +1,6 @@
 import './styled-modal.styles.css'
 import Modal from 'react-modal'
 import { useUserContext } from '@/contexts/user.context'
-import { appendFile } from 'fs';
 
 
 type ModalProps = {

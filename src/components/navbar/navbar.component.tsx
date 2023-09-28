@@ -3,6 +3,7 @@
 import React from 'react'
 import LogInOrOut from '@/components/log-in-out/log-in-out.component';
 import { usePathname } from 'next/navigation'
+import Link from 'next/link';
 
 export default function Navbar() {
 
@@ -29,7 +30,7 @@ export default function Navbar() {
       <nav className='mt-10 w-1/2 flex items-center justify-evenly gap-4 text-2xl md:text-4xl'>
         {navItems.map(({name, href}) => {
           return (
-          <a key={href} href={href} data-active={currentPath === href}>{name}</a>
+          <Link key={href} href={href} data-active={currentPath === href}>{name}</Link>
           )
         })}
       </nav>
