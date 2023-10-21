@@ -1,14 +1,16 @@
 import { StaticImageData } from "next/image"
-import Retrofolio from '../../resources/retrofolio.png';
+import Retrofolio from '../../resources/retrofolio.png'
 import CirclePainter  from '../../resources/circle-painter.png'
 import Blackjack  from '../../resources/blackjack.png'
-import AgeCalc  from '../../resources/age-calc.png'
+import WeatherMain from '../../resources/weathermain.png'
 import Counter  from '../../resources/counter.png'
 import Travel from '../../resources/travel.jpeg'
 import HTMLIcon from '../../resources/HTML-icon.svg'
 import CSSIcon from '../../resources/CSS-icon.svg'
 import JSIcon from '../../resources/JS-icon.svg'
+import TSIcon from '../../resources/typescript.svg'
 import ReactIcon from '../../resources/React-icon.svg'
+import SvelteIcon from '../../resources/svelte.png'
 import SassIcon from '../../resources/Sass-icon.svg'
 import GitIcon from '../../resources/Git-icon.svg'
 
@@ -91,18 +93,18 @@ export const skills:Skill[] = [
 
 export const projects:Project[] = [
   {
+    name: 'WeatherMain',
+    href: 'https://weathermain.vercel.app',
+    img: WeatherMain,
+    tags: [HTMLIcon, CSSIcon, TSIcon, SvelteIcon],
+    repo: 'https://github.com/Jpaulsisson/weather-main',
+  },
+  {
     name: 'Retrofolio',
     href: 'https://jpaulsisson.netlify.app/',
     img: Retrofolio,
     tags: [HTMLIcon, SassIcon, JSIcon, ReactIcon, GitIcon],
     repo: 'https://github.com/Jpaulsisson/portfolio-site'
-  },
-  {
-    name: 'Circle Painter',
-    href: 'https://circle-paint.netlify.app/',
-    img: CirclePainter,
-    tags: [HTMLIcon, CSSIcon, JSIcon, ReactIcon, GitIcon],
-    repo: 'https://github.com/Jpaulsisson/circle-generator-app',
   },
   {
     name: 'Blackjack',
@@ -112,11 +114,11 @@ export const projects:Project[] = [
     repo: 'https://github.com/Jpaulsisson/blackjack',
   },
   {
-    name: 'Age Calculator',
-    href: 'https://calculate-age-fem.netlify.app',
-    img: AgeCalc,
-    tags: [HTMLIcon, SassIcon, JSIcon, GitIcon],
-    repo: 'https://github.com/Jpaulsisson/age-calculator-app',
+    name: 'Circle Painter',
+    href: 'https://circle-paint.netlify.app/',
+    img: CirclePainter,
+    tags: [HTMLIcon, CSSIcon, JSIcon, ReactIcon, GitIcon],
+    repo: 'https://github.com/Jpaulsisson/circle-generator-app',
   },
   {
     name: 'Customizable Counter',
