@@ -3,7 +3,7 @@ import Retrofolio from '../../resources/retrofolio.png'
 import CirclePainter  from '../../resources/circle-painter.png'
 import Blackjack  from '../../resources/blackjack.png'
 import WeatherMain from '../../resources/weathermain.png'
-import Counter  from '../../resources/counter.png'
+import SmiteMeta  from '../../resources/smite-meta.png'
 import Travel from '../../resources/travel.jpeg'
 import HTMLIcon from '../../resources/HTML-icon.svg'
 import CSSIcon from '../../resources/CSS-icon.svg'
@@ -13,6 +13,7 @@ import ReactIcon from '../../resources/React-icon.svg'
 import SvelteIcon from '../../resources/svelte.png'
 import SassIcon from '../../resources/Sass-icon.svg'
 import GitIcon from '../../resources/Git-icon.svg'
+import NextIcon from '../../resources/next-icon.svg'
 
 type Project = {
   name: string,
@@ -93,6 +94,13 @@ export const skills:Skill[] = [
 
 export const projects:Project[] = [
   {
+    name: 'Smite Meta',
+    href: 'https://smite-meta.vercel.app/',
+    img: SmiteMeta,
+    tags: [HTMLIcon, CSSIcon, TSIcon, ReactIcon, NextIcon],
+    repo: 'https://github.com/Jpaulsisson/smite_meta',
+  },
+  {
     name: 'WeatherMain',
     href: 'https://weathermain.vercel.app',
     img: WeatherMain,
@@ -119,13 +127,6 @@ export const projects:Project[] = [
     img: CirclePainter,
     tags: [HTMLIcon, CSSIcon, JSIcon, ReactIcon, GitIcon],
     repo: 'https://github.com/Jpaulsisson/circle-generator-app',
-  },
-  {
-    name: 'Customizable Counter',
-    href: 'https://customizable-counter.netlify.app',
-    img: Counter,
-    tags: [HTMLIcon, CSSIcon, JSIcon, ReactIcon, GitIcon],
-    repo: 'https://github.com/Jpaulsisson/wds-react-hooks-course/tree/main',
   },
 ]
 
