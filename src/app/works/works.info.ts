@@ -43,16 +43,24 @@ export const skills:Skill[] = [
     color: 'text-yellow-300',
   },
   {
+    name: 'TypeScript',
+    color: 'text-accentBlue',
+  },
+  {
     name: 'React',
     color: 'text-blue-300',
   },
   {
-    name: 'Sass',
-    color: 'text-pink-500',
+    name: 'Next',
+    color: 'text-slate-300',
   },
   {
-    name: 'TypeScript',
-    color: 'text-accentBlue',
+    name: 'Svelte',
+    color: 'text-red-400',
+  },
+  {
+    name: 'Sass',
+    color: 'text-pink-500',
   },
   {
     name: 'Tailwind',
@@ -67,16 +75,8 @@ export const skills:Skill[] = [
     color: 'text-purple-500',
   },
   {
-    name: 'Svelte',
-    color: 'text-red-400',
-  },
-  {
     name: 'SQL',
     color: 'text-amber-200',
-  },
-  {
-    name: 'PostgreSQL',
-    color: 'text-sky-600',
   },
   {
     name: 'NodeJS',
@@ -85,6 +85,10 @@ export const skills:Skill[] = [
   {
     name: 'ExpressJS',
     color: 'text-slate-300',
+  },
+  {
+    name: 'PostgreSQL',
+    color: 'text-sky-600',
   },
   {
     name: 'Supabase',
