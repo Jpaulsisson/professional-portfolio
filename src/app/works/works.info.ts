@@ -1,5 +1,6 @@
 import { StaticImageData } from "next/image"
 import Retrofolio from '../../resources/retrofolio.png'
+import HeroBook from '../../resources/hero-book-preview.png'
 import CirclePainter  from '../../resources/circle-painter.png'
 import Blackjack  from '../../resources/blackjack.png'
 import WeatherMain from '../../resources/weathermain.png'
@@ -115,21 +116,28 @@ export const projects:Project[] = [
     name: 'Retrofolio',
     href: 'https://jpaulsisson.netlify.app/',
     img: Retrofolio,
-    tags: [HTMLIcon, SassIcon, JSIcon, ReactIcon, GitIcon],
+    tags: [HTMLIcon, SassIcon, JSIcon, ReactIcon, NextIcon],
     repo: 'https://github.com/Jpaulsisson/portfolio-site'
+  },
+  {
+    name: 'Super Hero Big Book',
+    href: 'https://big-hero-book.vercel.app',
+    img: HeroBook,
+    tags: [HTMLIcon, CSSIcon, TSIcon, ReactIcon, NextIcon],
+    repo: 'https://github.com/Jpaulsisson/big-hero-book',
   },
   {
     name: 'Blackjack',
     href: 'https://jpaulsisson-blackjack.netlify.app/',
     img: Blackjack,
-    tags: [HTMLIcon, CSSIcon, JSIcon, ReactIcon, GitIcon],
+    tags: [HTMLIcon, CSSIcon, JSIcon, ReactIcon],
     repo: 'https://github.com/Jpaulsisson/blackjack',
   },
   {
     name: 'Circle Painter',
     href: 'https://circle-paint.netlify.app/',
     img: CirclePainter,
-    tags: [HTMLIcon, CSSIcon, JSIcon, ReactIcon, GitIcon],
+    tags: [HTMLIcon, CSSIcon, JSIcon, ReactIcon],
     repo: 'https://github.com/Jpaulsisson/circle-generator-app',
   },
 ]
