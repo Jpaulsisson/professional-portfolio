@@ -1,8 +1,7 @@
 "use client"
 
 import { supabase } from '@/utils/supabase';
-import { authStateChangeListener } from '@/utils/supabase';
-import { Session, UserMetadata } from '@supabase/supabase-js';
+import { Session } from '@supabase/supabase-js';
 import React, { createContext, ReactNode, useContext, useState, useEffect } from 'react';
 
 type UserContextProviderProps = {
@@ -34,35 +33,17 @@ export default function UserContextProvider({ children }: UserContextProviderPro
     }
   }, [])
 
-  // useEffect(() => {
-  //   if (preferredTheme === 'dark') {
-  //     document.documentElement.style.setProperty('--primaryBg', 'hsl(240, 5.9%, 10%)');
-  //     document.documentElement.style.setProperty('--primaryFont', 'hsl(34deg, 78%, 91%)');
-  //     document.documentElement.style.setProperty('--accentOrange', 'hsl(15deg, 70%, 59%)');
-  //     document.documentElement.style.setProperty('--accentGreen', 'hsl(141,78.9%,85.1%)');
-  //     document.documentElement.style.setProperty('--accentBlue', 'hsl(217deg, 50%, 50%)');
-  //   };
-
-  //   if (preferredTheme === 'blue') {
-  //     document.documentElement.style.setProperty('--primaryBg', 'hsl(202, 63%, 18%)');
-  //     document.documentElement.style.setProperty('--primaryFont', 'hsl(34, 58%, 78%)');
-  //     document.documentElement.style.setProperty('--accentOrange', 'hsl(32, 67%, 40%)');
-  //     document.documentElement.style.setProperty('--accentGreen', 'hsl(134, 35%, 57%)');
-  //     document.documentElement.style.setProperty('--accentBlue', 'hsl(358, 43%, 66%)');
-  //   }
-  // })
-
   useEffect(() => {
-      const unsubscribe = supabase.auth.onAuthStateChange((event, session) => {
-        if (session) {
-          setCurrentSession(session);
-        }
-        if (!session) {
-          setCurrentSession(null);
-        }
-      });
+    const unsubscribe = supabase.auth.onAuthStateChange((event, session) => {
+      if (session) {
+        setCurrentSession(session);
+      }
+      if (!session) {
+        setCurrentSession(null);
+      }
+    });
   }, [])
-  
+
   useEffect(() => {
     if (currentSession !== null) {
       setcurrentUsername(currentSession.user.user_metadata.name);

@@ -1,10 +1,10 @@
 import { StaticImageData } from "next/image"
 import Retrofolio from '../../resources/retrofolio.png'
 import HeroBook from '../../resources/hero-book-preview.png'
-import CirclePainter  from '../../resources/circle-painter.png'
-import Blackjack  from '../../resources/blackjack.png'
+import CirclePainter from '../../resources/circle-painter.png'
+import Blackjack from '../../resources/blackjack.png'
 import WeatherMain from '../../resources/weathermain.png'
-import SmiteMeta  from '../../resources/smite-meta-preview.png'
+import SmiteMeta from '../../resources/smite-meta-preview.png'
 import Travel from '../../resources/travel.jpeg'
 import HTMLIcon from '../../resources/HTML-icon.svg'
 import CSSIcon from '../../resources/CSS-icon.svg'
@@ -30,7 +30,7 @@ type Skill = {
   color: string,
 }
 
-export const skills:Skill[] = [
+export const skills: Skill[] = [
   {
     name: 'HTML',
     color: 'text-accentOrange',
@@ -88,6 +88,10 @@ export const skills:Skill[] = [
     color: 'text-slate-300',
   },
   {
+    name: 'Python',
+    color: 'text-sky-700',
+  },
+  {
     name: 'PostgreSQL',
     color: 'text-sky-600',
   },
@@ -97,7 +101,7 @@ export const skills:Skill[] = [
   }
 ]
 
-export const projects:Project[] = [
+export const projects: Project[] = [
   {
     name: 'Smite Meta',
     href: 'https://smite-meta.vercel.app/',
@@ -142,7 +146,7 @@ export const projects:Project[] = [
   },
 ]
 
-export const current:Project = {
+export const current: Project = {
   name: 'Travel Planner',
   href: '#',
   img: Travel,
