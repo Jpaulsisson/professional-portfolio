@@ -53,7 +53,7 @@ export const skills: Skill[] = [
   },
   {
     name: 'React Native',
-    color: 'text-sky-500',
+    color: 'text-sky-300',
   },
   {
     name: 'Next',
